@@ -60,8 +60,8 @@ def load_Markit(
         MarkitSecurities_american_equities = pd.read_parquet(file_path)
 
     else:
-        MarkitSecurities_american_equities = pull_Markit(start_date=START_DATE, end_date=END_DATE,
-                                                         wrds_username=WRDS_USERNAME)
+        MarkitSecurities_american_equities = pull_Markit(start_date=start_date, end_date=end_date,
+                                                         wrds_username=wrds_username)
 
         if save_cache:
             file_dir = Path(data_dir) / "pulled"

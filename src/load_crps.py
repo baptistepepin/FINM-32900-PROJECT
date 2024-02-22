@@ -65,7 +65,7 @@ def load_CRSP(
         CRSP_daily_stock = pd.read_parquet(file_path)
 
     else:
-        CRSP_daily_stock = pull_CRSP(start_date=START_DATE, end_date=END_DATE, wrds_username=WRDS_USERNAME)
+        CRSP_daily_stock = pull_CRSP(start_date=start_date, end_date=end_date, wrds_username=wrds_username)
 
         if save_cache:
             file_dir = Path(data_dir) / "pulled"
