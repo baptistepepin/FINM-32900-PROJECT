@@ -1,9 +1,46 @@
 Project Title HERE
 ==================
 
+# Task List
+
+
+- [ ] Create file `merge_data.py` to merge the data from the three sources
+- [ ] Create file `calculate_ratios.py` to calculate the ratios from the merged data
+
+- [ ] Create file `create_report.py` to create the final report (in LaTeX format, using the dataframes generated in the ratios file)
+- [ ] Update the `dodo.py` file to include all the tasks (pulling data, merging data, calculating ratios, and creating the final report)
+
+- [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
+- [ ] Update the `README.md` file that explains the project and how to run the code
+- [ ] Update the `requirements.txt` file that lists all the dependencies for the project
+- [ ] Complete all the docstrings for the functions in the code
+- [ ] Complete all the headers for the created files
+
+- [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
+- [ ] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
+- [ ] Create file `test_load_crps.py` to test the `load_crps.py` file
+- [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
+
+Should we add a specific file for cleaning the data? Or should we include this in the `merge_data.py` file?
+
+
+Baptiste:
+- [x] Create file `load_crps.py` to pull data from CRPS
+- [x] Create file `load_markit.py` to pull data from Markit
+- [x] Create file `load_reprisk.py` to pull data from RepRisk
+
+Adriana:
+
+
+Pranav:
+
+
+Diego:
+
+
 # About this project
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+TODO: Write a description of the project here.
 
 # Quick Start
 
@@ -11,8 +48,8 @@ To quickest way to run code in this repo is to use the following steps. First, n
 You can do this by downloading and installing it from here ([windows](https://tug.org/texlive/windows.html#install) and [mac](https://tug.org/mactex/mactex-download.html) installers).
 Having installed LaTeX, open a terminal and navigate to the root directory of the project and create a conda environment using the following command:
 ```
-conda create -n blank python=3.12
-conda activate blank
+conda create -n project python=3.12
+conda activate project
 ```
 and then install the dependencies with pip
 ```
