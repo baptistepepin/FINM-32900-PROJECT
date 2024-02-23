@@ -95,5 +95,5 @@ def load_RepRisk(
 
 if __name__ == "__main__":
     # Pull and save cache of RepRisk data
-    _ = load_RepRisk(data_dir=DATA_DIR, from_cache=False, save_cache=True, start_date=START_DATE, end_date=END_DATE,
+    _ = load_RepRisk(data_dir=DATA_DIR, from_cache=True, save_cache=True, start_date=START_DATE, end_date=END_DATE,
                      wrds_username=WRDS_USERNAME)
