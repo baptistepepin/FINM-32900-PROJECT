@@ -3,7 +3,6 @@ Project Title HERE
 
 # Task List
 
-
 - [ ] Create file `merge_data.py` to merge the data from the three sources
 - [ ] Create file `calculate_ratios.py` to calculate the ratios from the merged data
 
@@ -30,13 +29,16 @@ Baptiste:
 - [x] Create file `load_reprisk.py` to pull data from RepRisk
 
 Adriana:
-
+- [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
+- [ ] Update the `README.md` file that explains the project and how to run the code
 
 Pranav:
-
+- [ ] Write file `load_crps.py` to pull data from CRPS
+- [ ] Write file `load_markit.py` to pull data from Markit
+- [ ] Write file `load_reprisk.py` to pull data from RepRisk
 
 Diego:
-
+- [ ] Create file `merge_data.py` to merge the data from the three sources - Market with CRSP
 
 # About this project
 
