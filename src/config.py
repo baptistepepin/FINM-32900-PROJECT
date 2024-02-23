@@ -20,11 +20,14 @@ over to the other configuration, for example.
 from decouple import config
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 DATA_DIR = config('DATA_DIR', default=(BASE_DIR / 'data'), cast=Path)
 OUTPUT_DIR = config('OUTPUT_DIR', default=(BASE_DIR / 'output'), cast=Path)
 WRDS_USERNAME = config("WRDS_USERNAME", default="")
+
+START_DATE = config("START_DATE", default="2007-01-01")
+END_DATE = config("END_DATE", default="2024-01-01")
 
 if __name__ == "__main__":
     

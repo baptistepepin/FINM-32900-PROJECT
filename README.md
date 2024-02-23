@@ -9,36 +9,32 @@ Project Title HERE
 - [ ] Create file `create_report.py` to create the final report (in LaTeX format, using the dataframes generated in the ratios file)
 - [ ] Update the `dodo.py` file to include all the tasks (pulling data, merging data, calculating ratios, and creating the final report)
 
-- [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
-- [ ] Update the `README.md` file that explains the project and how to run the code
 - [ ] Update the `requirements.txt` file that lists all the dependencies for the project
 - [ ] Complete all the docstrings for the functions in the code
 - [ ] Complete all the headers for the created files
 
-- [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
-- [ ] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
-- [ ] Create file `test_load_crps.py` to test the `load_crps.py` file
 - [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
 
 Should we add a specific file for cleaning the data? Or should we include this in the `merge_data.py` file?
 
 
 Baptiste:
-- [x] Create file `load_crps.py` to pull data from CRPS
+- [x] Create file `load_crsp.py` to pull data from CRSP
 - [x] Create file `load_markit.py` to pull data from Markit
 - [x] Create file `load_reprisk.py` to pull data from RepRisk
+- [ ] Create file `merge_data.py` to merge the data RepRisk with Markit (isin or names)
 
 Adriana:
 - [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
 - [ ] Update the `README.md` file that explains the project and how to run the code
 
 Pranav:
-- [ ] Write file `load_crps.py` to pull data from CRPS
-- [ ] Write file `load_markit.py` to pull data from Markit
-- [ ] Write file `load_reprisk.py` to pull data from RepRisk
+- [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
+- [ ] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
+- [ ] Create file `test_load_crsp.py` to test the `load_crsp.py` file
 
 Diego:
-- [ ] Create file `merge_data.py` to merge the data from the three sources - Market with CRSP
+- [ ] Create file `merge_data.py` to merge the data from Markit with CRSP
 
 # About this project
 
