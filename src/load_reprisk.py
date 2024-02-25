@@ -4,11 +4,11 @@ This module pulls and saves data from RepRisk.
 
 from datetime import datetime
 from pathlib import Path
-
+import os
 import pandas as pd
 import wrds
 
-from src import config
+import config
 
 DATA_DIR = Path(config.DATA_DIR)
 WRDS_USERNAME = config.WRDS_USERNAME
@@ -79,10 +79,14 @@ def load_RepRisk(
     # TODO: Add docstring
     """
     if from_cache:
+        flag = 0
         file_path = Path(data_dir) / "pulled" / "reprisk.parquet"
-        RepRisk_df = pd.read_parquet(file_path)
-
-    else:
+        if os.path.exists(file_path):
+            RepRisk_df = pd.read_parquet(file_path)
+        else:
+            flag = 1
+    
+    if flag:
         RepRisk_df = pull_RepRisk(start_date=start_date, end_date=end_date, wrds_username=wrds_username)
 
         if save_cache:
