@@ -55,6 +55,7 @@ def load_Markit(
     """
     # TODO: Add docstring
     """
+    flag = 1
     if from_cache:
         flag = 0
         file_path = Path(data_dir) / "pulled" / "markit.parquet"
