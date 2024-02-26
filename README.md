@@ -40,7 +40,8 @@ Diego:
 
 This project amis to investigative the intricate relationship between Environmental, Social, and Governance (ESG) events and securities lending activities. Our goal is to provide a nuanced understanding of the interplay between ESG considerations and market activities, offering valuable insights into the considerations of short sellers in the context of ESG events. At the heart of our inquiry lies the pivotal question: 
 
-$$\textbf{Is there a relationship between ESG events and securities lending activity? Do short sellers incorporate ESG events in their investment decisions?}$$
+$$\textbf{Is there a relationship between ESG events and securities lending activity?}$$ 
+$$\textbf{Do short sellers incorporate ESG events in their investment decisions?}$$
 
 The relationship between Environmental, Social, and Governance (ESG) events and securities lending activities is a complex and multifaceted area of study within the financial market. The ESG events range from environmental disasters, social injustices, to governance failures—impact the behavior of short sellers and the broader securities lending market. 
 
@@ -56,6 +57,25 @@ Social events encompass issues like labor disputes, violations of human rights, 
 
 Governance events involve instances of poor management practices, corruption, executive misconduct, or lack of accountability. Such governance failures can erode investor trust and lead to financial penalties, impacting a company's stock performance. Short sellers often monitor these governance indicators as predictors of potential stock depreciation, influencing their investment strategies and, by extension, the securities lending market through variations in borrowing demand.
 
+#### Securities Lending Market Dynamics
+
+The Securities Lending Market is a crucial component of the financial markets, providing liquidity and facilitating the smooth functioning of securities trading. In this market, securities are temporarily transferred from one party to another. The lender of the securities, typically institutional investors like pension funds or mutual funds, loans out securities to borrowers, often for the purpose of short selling. The borrower, in return, provides collateral to the lender, which can be cash, other securities, or a letter of credit, and pays a fee based on an agreed-upon percentage of the loaned securities' value.
+
+Market dynamics in securities lending are influenced by supply and demand for specific securities. High demand for borrowing certain securities can lead to higher lending fees, making it more profitable for lenders.
+
+## Financial Data Pulling 
+
+To study this puzzling fact, we will refer to WRDS database. Wharton Research Data Services (WRDS) is a comprehensive repository of financial, economic, and insurance data. Renowned for its high-quality, reliable information, WRDS is indispensable for conducting precise financial analysis and research. Utilizing the WRDS platform, specifically through the wrds package, enables the swift and efficient extraction of large datasets. This efficiency in data collection affords researchers more time for in-depth analysis.
+
+For this project, we have chosen to utilize multiple datasets, including:
+
+* The **RepRisk Library**, which evaluates environmental, social, and governance (ESG) risks, as well as business conduct, using an extensive array of public sources. The incident-based data encompasses a variety of issues such as environmental impacts, labor practices, human rights, supply chain management, corruption, legal disputes, and regulatory violations.
+
+    Additionally, this dataset features the RepRisk Index (RRI), which dynamically captures and quantifies reputational risk exposure related to ESG issues. The RepRisk Rating (RRR), ranging from AAA to D, allows for the benchmarking and integration of ESG and business conduct risks.
+
+* The **IHS Markit library** is a leading, global financial information services company with over 15,000 employees. The company provides independent data, valuations and trade processing across all asset classes in order to enhance transparency, reduce risk and improve operational efficiency.
+
+After thorough data cleaning, analysis, and comparison of the datasets mentioned above, the project will elucidate whether a relationship exists between ESG events and securities lending activities, offering insights into the considerations of short sellers regarding ESG events in their investment strategies.
 
 # Quick Start
 
