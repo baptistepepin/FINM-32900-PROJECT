@@ -1,6 +1,9 @@
 """
 This module pulls and saves data on fundamentals from CRSP.
 It pulls the number of shares outstanding that we will need later for calculating our ratios.
+
+The CUSIP9 retrieved from the stksecurityinfohist table is used to link CRSP and Markit data according to this page
+https://wrds-www.wharton.upenn.edu/pages/wrds-research/database-linking-matrix/linking-markit-with-crsp-2/#connecting-with-crsp
 """
 
 from datetime import datetime
@@ -27,16 +30,25 @@ def pull_CRSP(
     Pulls CRSP stock data from a specified start date to end date.
 
     SQL query to pull data
+
+    We need the 9 digits CUSIP to be able to link CRSP and Markit data, this CUSIP9 is available in the stksecurityinfohist table.
     """
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
     end_date = datetime.strptime(end_date, "%Y-%m-%d")
 
     query = f"""
     SELECT 
-        date, permno, permco, cusip, shrout
+        dsf.date,
+        dsf.cusip,
+        ssih.cusip9,
+        dsf.shrout
     FROM crspq.dsf AS dsf
+    LEFT JOIN ( SELECT permno, permco, cusip, cusip9 FROM crspq.stksecurityinfohist
+            WHERE cusip9 IS NOT NULL
+            GROUP BY permno, permco, cusip, cusip9) AS ssih
+        ON dsf.permno = ssih.permno AND dsf.permco = ssih.permco AND dsf.cusip = ssih.cusip
     WHERE 
-        date BETWEEN '{start_date}' AND '{end_date}'
+        dsf.date BETWEEN '{start_date}' AND '{end_date}'
     """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
