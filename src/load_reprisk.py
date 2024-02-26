@@ -57,6 +57,7 @@ def pull_RepRisk(
         
         WHERE reprisk_v2.v2_metrics.date BETWEEN
             '{start_date}'::date AND '{end_date}'::date
+            AND reprisk_v2.v2_wrds_company_id_table.primary_isin IS NOT NULL
         """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
@@ -94,6 +95,7 @@ def pull_RepRisk_metrics(
         
         WHERE reprisk_v2.v2_metrics.date BETWEEN
             '{start_date}'::date AND '{end_date}'::date
+            AND reprisk_v2.v2_wrds_company_id_table.primary_isin IS NOT NULL
         """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
