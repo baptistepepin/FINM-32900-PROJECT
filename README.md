@@ -40,9 +40,13 @@ Diego:
 
 This project amis to investigative the intricate relationship between Environmental, Social, and Governance (ESG) events and securities lending activities. Our goal is to provide a nuanced understanding of the interplay between ESG considerations and market activities, offering valuable insights into the considerations of short sellers in the context of ESG events. At the heart of our inquiry lies the pivotal question: 
 
-$$\textbf{Is there a relationship between ESG events and securities lending activity?}$$ 
+```math
+\textbf{Is there a relationship between ESG events and securities lending activity?}
+```
 
-$$\textbf{Do short sellers incorporate ESG events in their investment decisions?}$$
+```math
+\textbf{Do short sellers incorporate ESG events in their investment decisions?}
+```
 
 The relationship between Environmental, Social, and Governance (ESG) events and securities lending activities is a complex and multifaceted area of study within the financial market. The ESG events range from environmental disasters, social injustices, to governance failures—impact the behavior of short sellers and the broader securities lending market. 
 
