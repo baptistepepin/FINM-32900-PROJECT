@@ -34,6 +34,8 @@ def merge_markit_crsp(markit_df, crsp_df):
         right_on=["cusip9", "date"],
     ).rename(columns={"cusip_x": "cusip_markit", "cusip_y": "cusip_crsp", "date": "date_crsp"}) #, "datadate": "date_markit"})
 
+    df['cusip_markit'].fillna(df['isin'].str[2:10], inplace=True)
+
     return df
 
 
