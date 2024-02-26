@@ -5,11 +5,11 @@ It pulls the number of shares outstanding that we will need later for calculatin
 
 from datetime import datetime
 from pathlib import Path
-
+import os
 import pandas as pd
 import wrds
 
-from src import config
+import config
 
 DATA_DIR = Path(config.DATA_DIR)
 WRDS_USERNAME = config.WRDS_USERNAME
@@ -60,11 +60,16 @@ def load_CRSP(
     """
     # TODO: Add docstring
     """
+    flag = 1
     if from_cache:
+        flag = 0
         file_path = Path(data_dir) / "pulled" / "crsp.parquet"
-        CRSP_daily_stock = pd.read_parquet(file_path)
-
-    else:
+        if os.path.exists(file_path):
+            CRSP_daily_stock = pd.read_parquet(file_path)
+        else:
+            flag=1
+    
+    if flag:
         CRSP_daily_stock = pull_CRSP(start_date=start_date, end_date=end_date, wrds_username=wrds_username)
 
         if save_cache:
