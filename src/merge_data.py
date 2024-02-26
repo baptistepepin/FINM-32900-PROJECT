@@ -9,7 +9,6 @@ A lot of ISIN numbers are missing in the RepRisk data, so a match on company nam
 import os
 
 import pandas as pd
-import pandas_datareader
 import config
 from pathlib import Path
 
@@ -27,33 +26,33 @@ def merge_markit_crsp(markit_df, crsp_df):
     This function merges the Markit and CRSP dataframes on dates and CUSIP9.
     """
     # Merge the dataframes
-    df = (pd.merge(
+    df = pd.merge(
         markit_df,
         crsp_df,
         how="left",
         left_on=["cusip", "datadate"],
         right_on=["cusip9", "date"],
-    ).rename(columns={"cusip_x": "cusip_markit", "cusip_y": "cusip_crsp", "date": "date_crsp"}))
+    ).rename(columns={"cusip_x": "cusip_markit", "cusip_y": "cusip_crsp", "date": "date_crsp"}) #, "datadate": "date_markit"})
 
     return df
 
 
-def merge_reprisk_crsp(reprisk_df, crsp_df):
-    """
-    This function merges the RepRisk and CRSP dataframes
-    See https://wrds-www.wharton.upenn.edu/pages/wrds-research/database-linking-matrix/linking-reprisk-with-crsp/
-    """
-    reprisk_df['cusip_reprisk'] = reprisk_df['primary_isin'].str[2:10]
-
-    df = pd.merge(
-        reprisk_df,
-        crsp_df,
-        how="left",
-        left_on=["cusip_reprisk", "date"],
-        right_on=["cusip", "date"],
-    ).rename(columns={"cusip": "cusip_crsp", "date_x": "date_reprisk", "date_y": "date_crsp"})
-
-    return df
+# def merge_reprisk_crsp(reprisk_df, crsp_df):
+#     """
+#     This function merges the RepRisk and CRSP dataframes
+#     See https://wrds-www.wharton.upenn.edu/pages/wrds-research/database-linking-matrix/linking-reprisk-with-crsp/
+#     """
+#     reprisk_df['cusip_reprisk'] = reprisk_df['primary_isin'].str[2:10]
+#
+#     df = pd.merge(
+#         reprisk_df,
+#         crsp_df,
+#         how="left",
+#         left_on=["cusip_reprisk", "date"],
+#         right_on=["cusip", "date"],
+#     ).rename(columns={"cusip": "cusip_crsp", "date_x": "date_reprisk", "date_y": "date_crsp"})
+#
+#     return df
 
 
 def merge_data(
@@ -69,6 +68,7 @@ def merge_data(
     """
 
     """
+    reprisk_df['cusip_reprisk'] = reprisk_df['primary_isin'].str[2:10]
 
     flag = 1
     if from_cache:
@@ -81,14 +81,16 @@ def merge_data(
 
     if flag:
         markit_crsp = merge_markit_crsp(markit_df, crsp_df)
-        reprisk_crsp = merge_reprisk_crsp(reprisk_df, crsp_df)
+        # reprisk_crsp = merge_reprisk_crsp(reprisk_df, crsp_df)
 
         # Merge the two dataframes
         df = pd.merge(
             markit_crsp,
-            reprisk_crsp,
+            reprisk_df,
             how="left",
-            on=["cusip_crsp", "date_crsp"]
+            left_on=["cusip_markit", "datadate"],
+            right_on=["cusip_reprisk", "date"],
+            # on=["cusip_crsp", "date_crsp"]
         )
 
         if save_cache:
