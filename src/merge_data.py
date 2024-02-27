@@ -32,9 +32,7 @@ def merge_markit_crsp(markit_df, crsp_df):
         how="left",
         left_on=["cusip", "datadate"],
         right_on=["cusip9", "date"],
-    ).rename(columns={"cusip_x": "cusip_markit", "cusip_y": "cusip_crsp", "date": "date_crsp"}) #, "datadate": "date_markit"})
-
-    df['cusip_markit'].fillna(df['isin'].str[2:10], inplace=True)
+    ).drop(columns=["cusip9", "date"]).rename(columns={"datadate": "date"})
 
     return df
 
@@ -70,7 +68,6 @@ def merge_data(
     """
 
     """
-    reprisk_df['cusip_reprisk'] = reprisk_df['primary_isin'].str[2:10]
 
     flag = 1
     if from_cache:
@@ -83,16 +80,13 @@ def merge_data(
 
     if flag:
         markit_crsp = merge_markit_crsp(markit_df, crsp_df)
-        # reprisk_crsp = merge_reprisk_crsp(reprisk_df, crsp_df)
 
         # Merge the two dataframes
         df = pd.merge(
             markit_crsp,
             reprisk_df,
             how="left",
-            left_on=["cusip_markit", "datadate"],
-            right_on=["cusip_reprisk", "date"],
-            # on=["cusip_crsp", "date_crsp"]
+            on=["cusip", "date"]
         )
 
         if save_cache:

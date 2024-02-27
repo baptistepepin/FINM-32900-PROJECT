@@ -39,7 +39,6 @@ def pull_CRSP(
     query = f"""
     SELECT 
         dsf.date,
-        dsf.cusip,
         ssih.cusip9,
         dsf.shrout
     FROM crspq.dsf AS dsf

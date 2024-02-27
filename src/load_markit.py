@@ -56,6 +56,11 @@ def pull_Markit(
         # append new year's records to the existing dataframe
         df = pd.concat([df, _df])
 
+    df['cusip'].fillna(df['isin'].str[2:11])
+
+    # Drop lines with missing CUSIP
+    df = df.dropna(subset=['cusip'])
+
     db.close()
 
     return df

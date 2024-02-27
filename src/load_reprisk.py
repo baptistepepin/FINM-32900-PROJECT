@@ -65,6 +65,8 @@ def pull_RepRisk(
     )
     db.close()
 
+    df['cusip'] = df['primary_isin'].str[2:11]
+
     return df
 
 
