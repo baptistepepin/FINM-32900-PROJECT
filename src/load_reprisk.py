@@ -1,5 +1,17 @@
 """
-This module pulls and saves data from RepRisk.
+The `load_reprisk.py` module has been designed to pull and save data from RepRisk Library. 
+
+The module contains the following functions:
+    * pull_RepRisk - Pulls data from the RepRisk Library.
+    * load_RepRisk - Loads data from the RepRisk Library.
+
+The RepRisk Library is a comprehensive database of ESG risk metrics. This library includes three main tables where we will be extracting the information from since 
+each table contains different information. The tables are:
+    * v2_metrics
+    * v2_wrds_company_id_table
+    * v2_risk_incidents
+
+After pulling the data from the three libraries, we will merge the data into a single dataframe using the `reprisk_id` as the key.
 """
 
 from datetime import datetime
@@ -22,7 +34,9 @@ def pull_RepRisk(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Add docstring
+    The `pull_RepRisk` function has been designed to pull data from the RepRisk Library using the `wrds` package. 
+    As stated before, the data will be collected from three different tables: `v2_metrics`, `v2_wrds_company_id_table`, and `v2_risk_incidents`, 
+    each one containing different information. The data will be merged into a single dataframe using the `reprisk_id` as the key.
     """
     query = f"""
         SELECT
@@ -76,7 +90,11 @@ def load_RepRisk(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Add docstring
+    The `load_RepRisk` function has been designed to load data from the RepRisk Library.
+    The function utilizes a caching mechanism that checks if the data for the specified date range has already been pulled and saved locally 
+    as a Parquet file. This approach reduces unnecessary data retrieval operations, saving time and computational resources.
+    
+    The function returns a DataFrame containing the RepRisk data for the specified date range.
     """
     flag = 1
     if from_cache:
