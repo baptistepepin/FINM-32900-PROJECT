@@ -1,6 +1,15 @@
 """
-This module pulls and saves data on fundamentals from CRSP.
-It pulls the number of shares outstanding that we will need later for calculating our ratios.
+The `load_reprisk.py` module has been designed to pull and save data from CRSP Library using the `wrds` package. This library contains
+data of shares outstanding that we will need later for calculating our ratios.
+
+The module contains the following functions:
+    * pull_CRSP - Pulls data from the CRSP Library.
+    * load_CRSP - Loads data from the CRSP Library.
+
+The CRSP Library is a comprehensive database of stock data. This library includes the following tables:
+    * dsf
+
+After pulling the data from the `dsf` table, we will save the data as a Parquet file.
 """
 
 from datetime import datetime
@@ -23,10 +32,9 @@ def pull_CRSP(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Update docstring
-    Pulls CRSP stock data from a specified start date to end date.
-
-    SQL query to pull data
+    The `pull_CRSP` function has been designed to pull data from the CRSP Library using the `wrds` package.
+    This function will pull data from the `dsf` table, which contains information about outstanding shares for a particular time range. After the
+    data has been pulled, the function will multiply the `shrout` column by 1000 to convert the data from thousands to units.
     """
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
     end_date = datetime.strptime(end_date, "%Y-%m-%d")
@@ -58,7 +66,11 @@ def load_CRSP(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Add docstring
+    The `load_CRSP` function has been designed to load data from the CRSP Library. 
+    This function utilizes a caching mechanism that checks if the data for the specified date range has already been pulled and saved locally
+    as a Parquet file. This approach reduces unnecessary data retrieval operations, saving time and computational resources.
+
+    The function returns a DataFrame containing the CRSP data for the specified date range.
     """
     flag = 1
     if from_cache:
