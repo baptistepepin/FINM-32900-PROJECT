@@ -12,16 +12,16 @@ import pandas as pd
 import config
 from pathlib import Path
 
-from src.load_crsp import load_CRSP
-from src.load_markit import load_Markit
-from src.load_reprisk import load_RepRisk
+from load_crsp import load_CRSP
+from load_markit import load_Markit
+from load_reprisk import load_RepRisk
 
 DATA_DIR = Path(config.DATA_DIR)
 START_DATE = config.START_DATE
 END_DATE = config.END_DATE
 
 
-def merge_markit_crsp(markit_df, crsp_df):
+def merge_markit_crsp(markit_df, crsp_df,data_dir=DATA_DIR):
     """
     This function merges the Markit and CRSP dataframes on dates and CUSIP9.
     """
@@ -33,6 +33,14 @@ def merge_markit_crsp(markit_df, crsp_df):
         left_on=["cusip", "datadate"],
         right_on=["cusip9", "date"],
     ).drop(columns=["cusip9", "date"]).rename(columns={"datadate": "date"})
+
+    df['short interest ratio'] = df['quantityonloan']/df['shrout']
+    df['loan supply ratio'] = df['lendablequantity']/df['shrout']
+    df['loan utilisation ratio'] = df['utilisation']
+    df['loan fee'] = df['indicativefee']
+
+    file_dir = Path(data_dir) / "pulled"
+    df.to_parquet(file_dir / 'markit_crsp_ratios.parquet')
 
     return df
 
@@ -103,4 +111,4 @@ if __name__ == "__main__":
     crsp_df = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     reprisk_df = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 
-    _ = merge_data(markit_df, crsp_df, reprisk_df, start=START_DATE, end=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
+    _ = merge_data(markit_df, crsp_df, reprisk_df, start=START_DATE, end=END_DATE, data_dir=DATA_DIR, from_cache=False, save_cache=True)
