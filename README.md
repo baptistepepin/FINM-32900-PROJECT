@@ -9,8 +9,6 @@ Project Title HERE
 - [ ] Update the `dodo.py` file to include all the tasks (pulling data, merging data, calculating ratios, and creating the final report)
 
 - [ ] Update the `requirements.txt` file that lists all the dependencies for the project
-- [ ] Complete all the docstrings for the functions in the code
-- [ ] Complete all the headers for the created files
 
 - [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
 
@@ -29,6 +27,8 @@ Baptiste:
 Adriana:
 - [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
 - [ ] Update the `README.md` file that explains the project and how to run the code
+- [ ] Complete all the docstrings for the functions in the code
+- [ ] Complete all the headers for the created files
 
 Pranav:
 - [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
