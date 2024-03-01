@@ -23,15 +23,15 @@ END_DATE = config.END_DATE
 
 def merge_markit_crsp(markit_df, crsp_df,data_dir=DATA_DIR):
     """
-    This function merges the Markit and CRSP dataframes on dates and CUSIP9.
+    This function merges the Markit and CRSP dataframes on dates and CUSIP8.
     """
     # Merge the dataframes
     df = pd.merge(
         markit_df,
         crsp_df,
         how="left",
-        left_on=["cusip", "datadate"],
-        right_on=["cusip9", "date"],
+        left_on=["cusip8", "datadate"],
+        right_on=["cusip8", "date"],
     ).drop(columns=["cusip9", "date"]).rename(columns={"datadate": "date"})
 
     df['short interest ratio'] = df['quantityonloan']/df['shrout']
@@ -111,4 +111,4 @@ if __name__ == "__main__":
     crsp_df = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     reprisk_df = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 
-    _ = merge_data(markit_df, crsp_df, reprisk_df, start=START_DATE, end=END_DATE, data_dir=DATA_DIR, from_cache=False, save_cache=True)
+    _ = merge_data(markit_df, crsp_df, reprisk_df, start=START_DATE, end=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
