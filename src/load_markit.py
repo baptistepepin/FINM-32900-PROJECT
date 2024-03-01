@@ -47,7 +47,8 @@ def pull_Markit(
                 msf.lendablequantity,
                 msf.lenderconcentration,
                 msf.borrowerconcentration,
-                msf.inventoryconcentration
+                msf.inventoryconcentration,
+                msf.marketarea
             FROM markit_msf_analytics_eqty_amer.amereqty{yr} AS msf
             """
 
@@ -57,6 +58,7 @@ def pull_Markit(
         df = pd.concat([df, _df])
 
     df['cusip'].fillna(df['isin'].str[2:11])
+    df['cusip8'] = df['cusip'].str[:8]
 
     # Drop lines with missing CUSIP
     df = df.dropna(subset=['cusip'])
