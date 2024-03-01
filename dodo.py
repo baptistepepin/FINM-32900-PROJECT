@@ -285,29 +285,29 @@ def task_run_notebooks():
 #     }
 
 
-def task_compile_latex_docs():
-    """Example plots"""
-    file_dep = [
-        "./reports/report_example.tex",
-        "./reports/slides_example.tex",
-        "./src/example_plot.py",
-        "./src/example_table.py",
-    ]
-    file_output = [
-        "./reports/report_example.pdf",
-        "./reports/slides_example.pdf",
-    ]
-    targets = [file for file in file_output]
+# def task_compile_latex_docs():
+#     """Example plots"""
+#     file_dep = [
+#         "./reports/report_example.tex",
+#         "./reports/slides_example.tex",
+#         "./src/example_plot.py",
+#         "./src/example_table.py",
+#     ]
+#     file_output = [
+#         "./reports/report_example.pdf",
+#         "./reports/slides_example.pdf",
+#     ]
+#     targets = [file for file in file_output]
 
-    return {
-        "actions": [
-            "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
-            "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
-            "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
-            "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
-            # "latexmk -CA -cd ../reports/",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     return {
+#         "actions": [
+#             "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
+#             "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
+#             # "latexmk -CA -cd ../reports/",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
