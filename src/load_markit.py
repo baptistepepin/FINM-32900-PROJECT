@@ -44,11 +44,33 @@ def pull_Markit(
     # loop through the years to extract identifiers
     for yr in range(start_date.year, end_date.year + 1, 1):
         print(f"Pulling data for year {yr}")
-        _df = db.raw_sql(f"""SELECT datadate, dxlid, isin, sedol, cusip, instrumentname, indicativefee, utilisation, shortloanquantity, quantityonloan, lendablequantity, lenderconcentration, borrowerconcentration, inventoryconcentration
-        FROM markit_msf_analytics_eqty_amer.amereqty{yr}""", date_cols=['datadate'])
+
+        query = f"""
+            SELECT 
+                msf.datadate,
+                msf.cusip,
+                msf.isin,
+                msf.instrumentname,
+                msf.indicativefee,
+                msf.utilisation,
+                msf.shortloanquantity,
+                msf.quantityonloan,
+                msf.lendablequantity,
+                msf.lenderconcentration,
+                msf.borrowerconcentration,
+                msf.inventoryconcentration
+            FROM markit_msf_analytics_eqty_amer.amereqty{yr} AS msf
+            """
+
+        _df = db.raw_sql(query, date_cols=['datadate'])
 
         # append new year's records to the existing dataframe
         df = pd.concat([df, _df])
+
+    df['cusip'].fillna(df['isin'].str[2:11])
+
+    # Drop lines with missing CUSIP
+    df = df.dropna(subset=['cusip'])
 
     db.close()
 

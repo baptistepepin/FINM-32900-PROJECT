@@ -71,11 +71,117 @@ def pull_RepRisk(
         
         WHERE reprisk_v2.v2_metrics.date BETWEEN
             '{start_date}'::date AND '{end_date}'::date
+            AND reprisk_v2.v2_wrds_company_id_table.primary_isin IS NOT NULL
         """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
         query, date_cols=["date", "peak_rri_date", "incident_date"]
     )
+    db.close()
+
+    df['cusip'] = df['primary_isin'].str[2:11]
+
+    return df
+
+
+def pull_RepRisk_metrics(
+        start_date=START_DATE,
+        end_date=END_DATE,
+        wrds_username=WRDS_USERNAME
+):
+    """
+    # TODO: Add docstring
+    """
+    query = f"""
+        SELECT
+            reprisk_v2.v2_metrics.reprisk_id,
+            reprisk_v2.v2_metrics.date,
+            reprisk_v2.v2_wrds_company_id_table.company_name,
+            reprisk_v2.v2_wrds_company_id_table.primary_isin,
+            reprisk_v2.v2_metrics.current_rri,
+            reprisk_v2.v2_metrics.trend_rri,
+            reprisk_v2.v2_metrics.peak_rri,
+            reprisk_v2.v2_metrics.peak_rri_date,
+            reprisk_v2.v2_metrics.reprisk_rating,
+            reprisk_v2.v2_metrics.country_sector_average
+
+        FROM reprisk_v2.v2_metrics
+        LEFT JOIN reprisk_v2.v2_wrds_company_id_table
+            ON reprisk_v2.v2_metrics.reprisk_id = reprisk_v2.v2_wrds_company_id_table.reprisk_id
+        
+        WHERE reprisk_v2.v2_metrics.date BETWEEN
+            '{start_date}'::date AND '{end_date}'::date
+            AND reprisk_v2.v2_wrds_company_id_table.primary_isin IS NOT NULL
+        """
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(
+        query, date_cols=["date"]
+    )
+    db.close()
+
+    return df
+
+
+def pull_RepRisk_incidents(
+        start_date=START_DATE,
+        end_date=END_DATE,
+        wrds_username=WRDS_USERNAME
+):
+    """
+    # TODO: Add docstring
+    """
+    query = f"""
+        SELECT
+            reprisk_v2.v2_risk_incidents.reprisk_id,
+            reprisk_v2.v2_risk_incidents.incident_date,
+            reprisk_v2.v2_wrds_company_id_table.company_name,
+            reprisk_v2.v2_wrds_company_id_table.primary_isin,
+            reprisk_v2.v2_risk_incidents.story_id,
+            reprisk_v2.v2_risk_incidents.unsharp_incident,
+            reprisk_v2.v2_risk_incidents.related_countries,
+            reprisk_v2.v2_risk_incidents.related_countries_codes,
+            reprisk_v2.v2_risk_incidents.severity,
+            reprisk_v2.v2_risk_incidents.reach,
+            reprisk_v2.v2_risk_incidents.novelty,
+            reprisk_v2.v2_risk_incidents.environment,
+            reprisk_v2.v2_risk_incidents.social,
+            reprisk_v2.v2_risk_incidents.governance
+        
+        FROM reprisk_v2.v2_risk_incidents
+        LEFT JOIN reprisk_v2.v2_wrds_company_id_table
+            ON reprisk_v2.v2_risk_incidents.reprisk_id = reprisk_v2.v2_wrds_company_id_table.reprisk_id
+        
+        WHERE reprisk_v2.v2_risk_incidents.incident_date BETWEEN
+            '{start_date}'::date AND '{end_date}'::date
+        """
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(
+        query, date_cols=["date"]
+    )
+    db.close()
+
+    return df
+
+
+def pull_RepRisk_company(
+        start_date=START_DATE,
+        end_date=END_DATE,
+        wrds_username=WRDS_USERNAME
+):
+    """
+    # TODO: Add docstring
+    """
+    query = f"""
+        SELECT
+            reprisk_v2.v2_company_identifiers.reprisk_id,
+            reprisk_v2.v2_company_identifiers.company_name,
+            reprisk_v2.v2_company_identifiers.primary_isin,
+            reprisk_v2.v2_company_identifiers.isins
+
+        FROM reprisk_v2.v2_company_identifiers
+        """
+    db = wrds.Connection(wrds_username=wrds_username)
+    df = db.raw_sql(query)
     db.close()
 
     return df

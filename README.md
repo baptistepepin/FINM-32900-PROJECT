@@ -3,17 +3,16 @@ Do short sellers respond to ESG ratings?
 
 # Task List
 
-- [ ] Create file `merge_data.py` to merge the data from the three sources
 - [ ] Create file `calculate_ratios.py` to calculate the ratios from the merged data
 
 - [ ] Create file `create_report.py` to create the final report (in LaTeX format, using the dataframes generated in the ratios file)
 - [ ] Update the `dodo.py` file to include all the tasks (pulling data, merging data, calculating ratios, and creating the final report)
 
 - [ ] Update the `requirements.txt` file that lists all the dependencies for the project
-- [ ] Complete all the docstrings for the functions in the code
-- [ ] Complete all the headers for the created files
 
 - [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
+
+- [ ] Look into a better merging on names (when all the rest will be working)
 
 Should we add a specific file for cleaning the data? Or should we include this in the `merge_data.py` file?
 
@@ -22,11 +21,14 @@ Baptiste:
 - [x] Create file `load_crsp.py` to pull data from CRSP
 - [x] Create file `load_markit.py` to pull data from Markit
 - [x] Create file `load_reprisk.py` to pull data from RepRisk
-- [ ] Create file `merge_data.py` to merge the data RepRisk with Markit (isin or names)
+- [x] Create file `merge_data.py` to merge the data from RepRisk with Markit on ISIN and CUSIP
+- [ ] Look into a better merging on names (when all the rest will be working)
 
 Adriana:
 - [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
 - [ ] Update the `README.md` file that explains the project and how to run the code
+- [ ] Complete all the docstrings for the functions in the code
+- [ ] Complete all the headers for the created files
 
 Pranav:
 - [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
@@ -34,7 +36,8 @@ Pranav:
 - [ ] Create file `test_load_crsp.py` to test the `load_crsp.py` file
 
 Diego:
-- [ ] Create file `merge_data.py` to merge the data from Markit with CRSP
+- [x] Look at CUSIP and the mapping of it in the different data sources for merging
+- [x] Create file `merge_data.py` to merge the data from Markit with CRSP on CUSIP
 
 # About this project
 

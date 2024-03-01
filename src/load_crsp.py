@@ -10,6 +10,9 @@ The CRSP Library is a comprehensive database of stock data. This library include
     * dsf
 
 After pulling the data from the `dsf` table, we will save the data as a Parquet file.
+
+The CUSIP9 retrieved from the stksecurityinfohist table is used to link CRSP and Markit data according to this page
+https://wrds-www.wharton.upenn.edu/pages/wrds-research/database-linking-matrix/linking-markit-with-crsp-2/#connecting-with-crsp
 """
 
 from datetime import datetime
@@ -41,10 +44,16 @@ def pull_CRSP(
 
     query = f"""
     SELECT 
-        date, permno, permco, cusip, shrout
+        dsf.date,
+        ssih.cusip9,
+        dsf.shrout
     FROM crspq.dsf AS dsf
+    LEFT JOIN ( SELECT permno, permco, cusip, cusip9 FROM crspq.stksecurityinfohist
+            WHERE cusip9 IS NOT NULL
+            GROUP BY permno, permco, cusip, cusip9) AS ssih
+        ON dsf.permno = ssih.permno AND dsf.permco = ssih.permco AND dsf.cusip = ssih.cusip
     WHERE 
-        date BETWEEN '{start_date}' AND '{end_date}'
+        dsf.date BETWEEN '{start_date}' AND '{end_date}'
     """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(
