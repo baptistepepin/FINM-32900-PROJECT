@@ -1,5 +1,14 @@
 """
-This module pulls and saves data from Markit.
+The `load_markit.py` module has been designed to pull and save data from Markit Library. 
+
+The module contains the following functions:
+    * pull_Markit - Pulls data from the Markit Library.
+    * load_Markit - Loads data from the Markit Library.
+
+From the Markit library, we will download all the data containing information about American equities from the following table:
+    * amereqty
+
+After pulling all the data, we will append the data from each year into a single dataframe.
 """
 
 from datetime import datetime
@@ -22,7 +31,9 @@ def pull_Markit(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Add docstring
+    The `pull_Markit` function has been designed to pull data from the Markit Library using the `wrds` package.
+    This function will pull data from the `amereqty` table, which contains information about American equities for a particular year. After the 
+    data has been pulled, the function will append the data from each year into a single dataframe.
     """
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
     end_date = datetime.strptime(end_date, "%Y-%m-%d")
@@ -77,7 +88,11 @@ def load_Markit(
         wrds_username=WRDS_USERNAME
 ):
     """
-    # TODO: Add docstring
+    The `load_Markit` function has been designed to load data from the Markit Library. 
+    This function utilizes a caching mechanism that checks if the data for the specified date range has already been pulled and saved locally
+    as a Parquet file. This approach reduces unnecessary data retrieval operations, saving time and computational resources.
+
+    The function returns a DataFrame containing the Markit data for the specified date range.
     """
     flag = 1
     if from_cache:
