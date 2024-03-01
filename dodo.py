@@ -45,6 +45,75 @@ def task_pull_fred():
         "clean": True,
     }
 
+def task_pull_crsp():
+    '''
+    This function will pull data from CRSP and save it to a parquet file
+    '''
+    file_dep = ["./src/load_crsp.py"]
+    file_output = ["crsp.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_crsp.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+
+def task_pull_markit():
+    '''
+    This function will pull data from Markit and save it to a parquet file
+    '''
+    file_dep = ["./src/load_markit.py"]
+    file_output = ["markit.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_markit.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_pull_reprisk():
+    '''
+    This function will pull data from RepRisk and save it to a parquet file
+    '''
+    file_dep = ["./src/load_reprisk.py"]
+    file_output = ["reprisk.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_reprisk.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_merge_data():
+    '''
+    This function will merge the data from the different sources
+    '''
+    file_dep = ["./src/merge_data.py"]
+    file_output = ["merged.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/merge_data.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
 
 # def task_pull_data_via_presto():
 #     """
