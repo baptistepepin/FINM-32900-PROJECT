@@ -45,6 +45,7 @@ def pull_CRSP(
     query = f"""
     SELECT 
         dsf.date,
+        dsf.cusip AS cusip8,
         ssih.cusip9,
         dsf.shrout
     FROM crspq.dsf AS dsf
@@ -62,6 +63,9 @@ def pull_CRSP(
     db.close()
 
     df["shrout"] = df["shrout"] * 1000
+
+    # We resample daily and ffill to have a match with the Markit data
+    df = df.set_index("date").sort_index().groupby("cusip9").resample("D").ffill().drop(columns=["cusip9"]).reset_index()
 
     return df
 
