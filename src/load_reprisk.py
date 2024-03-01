@@ -42,8 +42,8 @@ def pull_RepRisk(
         SELECT
             reprisk_v2.v2_metrics.reprisk_id,
             reprisk_v2.v2_metrics.date,
-            reprisk_v2.v2_wrds_company_id_table.company_name,
-            reprisk_v2.v2_wrds_company_id_table.primary_isin,
+            reprisk_v2.v2_company_identifiers.company_name,
+            reprisk_v2.v2_company_identifiers.primary_isin,
             reprisk_v2.v2_metrics.current_rri,
             reprisk_v2.v2_metrics.trend_rri,
             reprisk_v2.v2_metrics.peak_rri,
@@ -63,15 +63,16 @@ def pull_RepRisk(
             reprisk_v2.v2_risk_incidents.governance
         
         FROM reprisk_v2.v2_metrics
-        LEFT JOIN reprisk_v2.v2_wrds_company_id_table
-            ON reprisk_v2.v2_metrics.reprisk_id = reprisk_v2.v2_wrds_company_id_table.reprisk_id
+        LEFT JOIN reprisk_v2.v2_company_identifiers
+            ON reprisk_v2.v2_metrics.reprisk_id = reprisk_v2.v2_company_identifiers.reprisk_id
         LEFT JOIN reprisk_v2.v2_risk_incidents
             ON reprisk_v2.v2_metrics.reprisk_id = reprisk_v2.v2_risk_incidents.reprisk_id
                 AND reprisk_v2.v2_metrics.date = reprisk_v2.v2_risk_incidents.incident_date
         
         WHERE reprisk_v2.v2_metrics.date BETWEEN
             '{start_date}'::date AND '{end_date}'::date
-            AND reprisk_v2.v2_wrds_company_id_table.primary_isin IS NOT NULL
+            AND reprisk_v2.v2_company_identifiers.primary_isin IS NOT NULL
+            AND reprisk_v2.v2_company_identifiers.no_reported_risk_exposure = 'false'
         """
     db = wrds.Connection(wrds_username=wrds_username)
     df = db.raw_sql(

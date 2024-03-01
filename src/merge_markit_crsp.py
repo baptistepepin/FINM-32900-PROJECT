@@ -22,7 +22,7 @@ END_DATE = config.END_DATE
 
 def merge_markit_crsp(markit_df, crsp_df,data_dir=DATA_DIR,save_cache=False,from_cache=True):
     """
-    This function merges the Markit and CRSP dataframes on dates and CUSIP9.
+    This function merges the Markit and CRSP dataframes on dates and CUSIP8.
     """
     flag = 1
     if from_cache:
@@ -39,8 +39,8 @@ def merge_markit_crsp(markit_df, crsp_df,data_dir=DATA_DIR,save_cache=False,from
             markit_df,
             crsp_df,
             how="left",
-            left_on=["cusip", "datadate"],
-            right_on=["cusip9", "date"],
+            left_on=["cusip8", "datadate"],
+            right_on=["cusip8", "date"],
         ).drop(columns=["cusip9", "date"]).rename(columns={"datadate": "date"})
 
     df['short interest ratio'] = df['quantityonloan']/df['shrout']
