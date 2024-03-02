@@ -99,18 +99,52 @@ def task_pull_reprisk():
         "clean": True,
     }
 
-def task_merge_data():
+def task_merge_markit_crsp_reprisk():
     '''
-    Excecute the merge_data.py file that will merge the data from the different sources.
-    TODO: This functions calls the other load_ functions so maybe there is no need to create tasks to get this other data.
+    Excecute the merge_markit_crsp_reprisk.py file that will merge the data from the different sources.
+    TODO: This functions calls the other merge_markit_crsp_reprisk functions so maybe there is no need to create tasks to get this other data.
     '''
-    file_dep = ["./src/merge_data.py"]
-    file_output = ["merged.parquet"]
+    file_dep = ["./src/merge_markit_crsp_reprisk.py"]
+    file_output = ["merged_data.parquet"]
     targets = [DATA_DIR / "pulled" / file for file in file_output]
 
     return {
         "actions": [
-            "ipython ./src/merge_data.py",
+            "ipython ./src/merge_markit_crsp_reprisk.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_plot_apple_lend_ind():
+    '''
+    Plot apple's lending indicators and store the plot in the output directory
+    '''
+    file_dep = ["./src/plot_apple_lend_ind.py"]
+    file_output = ["apple_lend_ind.png"]
+    targets = [OUTPUT_DIR / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/plot_apple_lend_ind.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_compute_desc_stats():
+    '''
+    Compute the descriptive statistics and store them in the data directory as .parquet files
+    '''
+    file_dep = ["./src/compute_desc_stats.py"]
+    file_output = ["severity.parquet", "novelty.parquet", "reach.parquet", "environment.parquet", "social.parquet", "governance.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/compute_desc_stats.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
