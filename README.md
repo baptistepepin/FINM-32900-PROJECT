@@ -22,16 +22,17 @@ Adriana:
 Pranav:
 - [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
 - [x] Create file `merge_data.py` to merge the data from RepRisk with Markit on ISIN and CUSIP
-- [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
-- [ ] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
-- [ ] Create file `test_load_crsp.py` to test the `load_crsp.py` file
-- [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
+- [x] Create file `test_load_markit.py` to test the `load_markit.py` file
+- [x] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
+- [x] Create file `test_load_crsp.py` to test the `load_crsp.py` file
+- [x] Create file `test_merge_data.py` to test the `merge_data.py` file
 
 Diego:
 - [x] Look at CUSIP and the mapping of it in the different data sources for merging
 - [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
 - [ ] Create file to calculate the difference in ratios
 - [x] Update the `dodo.py` file to include all the tasks
+- [x] Complete report and create graphs
 
 # About this project
 
