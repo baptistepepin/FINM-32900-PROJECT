@@ -1,11 +1,13 @@
+"""
+TODO: Add description
+"""
+
 import pandas as pd
 import numpy as np
 from pathlib import Path
 import config
 
 
-
-# read the .parquet file in the data directory
 def read_data(file_name, data_dir=config.DATA_DIR):
     """
     Read the .parquet file in the data directory
@@ -18,7 +20,7 @@ def read_data(file_name, data_dir=config.DATA_DIR):
     return df
 
 
-# Compute the descriptive statistics
+
 def compute_desc_stats(df):
     """
     Compute the descriptive statistics
@@ -26,10 +28,10 @@ def compute_desc_stats(df):
     lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
     esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
 
-    # For i in esg, save each desc stats table to a .parquet file in the data directory
     for i in esg:
-        file_path = Path(config.DATA_DIR) / "pulled" / f"{i}.parquet"
-        df.groupby(i)[lending_indicators].describe().T.to_parquet(file_path)
+        for j in lending_indicators:
+            file_path = Path(config.OUTPUT_DIR) / "stats" / f"{j + '_' + i}.parquet"
+            df.groupby(i)[j].describe(percentiles=[.1, .25, .5, .75, .9]).T.to_parquet(file_path)
 
     return df
 
