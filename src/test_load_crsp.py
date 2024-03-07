@@ -31,7 +31,7 @@ def test_load_crsp():
     
     pass
 
-def test_load_fred_data_validity():
+def test_load_crsp_data_validity():
     df = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
     # # Check that we have the data atleast from the start of 2022 to the end of 2023
