@@ -182,7 +182,9 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loan Utilisation Ratio}
 
-This ratio compares the demand to the supply of loanable shares. A higher utilization rate suggests a strong demand for borrowing shares, often associated with an increased short selling activity.
+According to the Markit Data Dictionary, this variable is computed as "the value of assets on loan from lenders divided by the total lendable value".
+
+
  \begin{equation}
 	\text{Loan Utilization Ratio} = \text{Utilisation}
 	\label{eq:Loan_Utilization_Ratio}
@@ -322,15 +324,32 @@ Let's break down the analysis of the previous plot into each subplot.
 	\label{fig:gamestop_lending_indicators}
 \end{figure}
 
+GameStop Corp. is a company that commercializes video games, consumer electronics and gaming merchandise in the retail industry.
 
-Let's break down the analysis of the previous plot into each subplot for GameStop Inc.
+In 2021, the stock of the company suffered a so called Short Squeeze, that resulted in an increase of around 1,500\% in the price of the stock. Although this phenomenon was not caused directly by ESG- related events, the computed lending metrics are going to be analyzed to assess how the behave in such an unusual occurrence like this one.
 
 \begin{itemize}
-	\item Short Interest Ratio: .
-	\item Loan Supply Ratio: .
-	\item Loan Utilization Ratio: .
-	\item Loan Fee Ratio: 
+	\item Short Interest Ratio: fluctuates significantly, with a high peak reaching a moment when more than 30\% of the company's Shares Outstanding where being shorted in the marked. These abrupt changes may correlate with the social-media-driven trading surges that GameStop has experienced, contrasting with the more tempered fluctuations seen in Apple's ratio.
+	\item Loan Supply Ratio: the graph shows a trend that, although progressively increasing, includes sharp movements both upward and downward. These movements are indicative of a more dynamic change in the availability of shares for lending compared to Apple's relatively stable pattern. This could be a reflection of GameStop's more volatile stock price and the rapid changes in investor behavior that have characterized its trading patterns in recent years.
+	\item Loan Utilization Ratio: exhibits high volatility, but most importantly, its level moves in the range between 100 and 50, making an important distinction when compared to the Loan Utilization Ratio from Apple, that stayed below 1.
+	\item Loan Fee Ratio: stands out with its pronounced spike that declines over time, diverging from Apple's more random walk-like behavior. This pattern suggests that borrowing GameStop shares occasionally became particularly expensive, which could be due to limited supply or a surge in demand, likely related to the same speculative trading that affects its Short Interest and Loan Utilization Ratios.
 \end{itemize}
+
+It is also important not only to compare the trends and volatilities but also the levels of the ratios. While Apple's Short Interest Ratio fluctuated between 0.003 and 0.0005, GameStop's Short Interest Ratio fluctuated between the 0.3 - 0.1 levels. Moreover, the drastic difference in the Loan Utilization Ratio which indicated that the total value of assets on loan from lenders was lower than the total lendable value of the asset, which made sense for such a stable company like Apple Inc.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\doublespacing
+\section{Conclusion}
+
+
+
+
 
 
 \end{document}
