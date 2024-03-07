@@ -134,17 +134,39 @@ def task_plot_apple_lend_ind():
         "clean": True,
     }
 
+lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
+esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
+
+output_files = [f"{j + '_' + i}.parquet" for i in esg for j in lending_indicators]
+
 def task_compute_desc_stats():
     '''
     Compute the descriptive statistics and store them in the data directory as .parquet files
     '''
     file_dep = ["./src/compute_desc_stats.py"]
-    file_output = ["severity.parquet", "novelty.parquet", "reach.parquet", "environment.parquet", "social.parquet", "governance.parquet"]
+    file_output = output_files
     targets = [DATA_DIR / "pulled" / file for file in file_output]
 
     return {
         "actions": [
             "ipython ./src/compute_desc_stats.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_parquet_to_latex_table():
+    '''
+    Convert the .parquet files to LaTeX tables
+    '''
+    file_dep = ["./src/pandas_to_latex_tables.py"]
+    file_output = [f"{file.replace('.parquet', '.tex')}" for file in output_files]
+    targets = [OUTPUT_DIR / "tables" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/pandas_to_latex_tables.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
