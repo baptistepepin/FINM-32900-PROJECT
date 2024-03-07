@@ -1,0 +1,309 @@
+% !TeX root = report_example.tex
+\newcommand*{\MyHeaderPath}{.}% This path definition is also passed to inside the header files.
+\newcommand*{\PathToAssets}{../assets}%
+\newcommand*{\PathToOutput}{../output/}%
+\newcommand*{\PathToOutputTables}{../output/tables}%
+% \newcommand*{\PathToBibFile}{bibliography.bib}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This file is compiled with XeLaTex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{\MyHeaderPath/_article_header.tex}
+\input{\MyHeaderPath/_lean_header.tex}
+
+
+\begin{document}
+\title{
+Do short sellers respond to ESG ratings?
+}
+
+\author{
+Adriana Mata\footnote{Student - admata@uchicago.edu} \ \& Baptiste Pepin\footnote{Student - baptistepepin@uchicago.edu} \ \& Diego Almau\footnote{Student - diegoalmau@uchicago.edu} \ \& Pranav Phatak\footnote{Student - pphatak@uchicago.edu}
+}
+
+\begin{titlepage}
+\maketitle
+
+\doublespacing
+\begin{abstract}
+This study explores the intricate relationship between Environmental, Social, and Governance (ESG) events and securities lending activities, aiming to unveil how these events influence the behavior of short sellers and the broader market. By investigating various ESG incidents, from environmental catastrophes to governance breakdowns, we analyze their impact on securities lending, a proxy for short-selling interest. Our research seeks to determine whether short sellers incorporate ESG considerations into their investment decisions, suggesting a nuanced interplay between ESG events and market dynamics.
+\end{abstract}
+
+\end{titlepage}
+
+\doublespacing
+\section{Introduction}
+
+This project aims to unravel the complex relationship between Environmental, Social, and Governance (ESG) events and securities lending activities. It aims to dissect the nuanced interplay between ESG considerations and market dynamics, particularly focusing on the strategies and decisions of short sellers in the wake of ESG events. The central thesis of this inquiry probes two critical questions: Is there a discernible relationship between ESG events and securities lending activity, and do short sellers factor ESG events into their investment decisions?
+
+ESG events encompass a broad spectrum of incidents, ranging from environmental catastrophes, such as oil spills and deforestation, to social and governance issues, including labor disputes and corporate governance failures. These events not only have the potential to directly affect a company's financial performance but also impact its stock price indirectly through reputational damage and regulatory actions. Given the financial implications of ESG events, short sellers—investors who bet against the stock prices of companies—may be particularly attuned to these occurrences. Their investment decisions, driven by the anticipation of declining stock prices following ESG mishaps, could significantly influence securities lending activities by altering demand and affecting the terms of securities loans.
+
+By delving into the environmental, social, and governance dimensions of ESG events, this study seeks to shed light on their impact on the securities lending market and the investment strategies of short sellers. The investigation not only contributes to the academic discourse on sustainable finance but also offers practical insights for investors, policymakers, and corporate executives aiming to understand the interconnections between ESG factors and financial market dynamics. Through this lens, the project aspires to illuminate the broader implications of ESG events on market behavior and the strategic considerations of market participants in the context of securities lending.
+
+
+%\begin{textbox}{green}{Comments}
+%Here is a textbox...
+%\end{textbox}
+
+%I give an example of a simple table in Table \ref{table:pandas_to_latex_simple_table1.tex}.
+
+
+%\begin{table}
+%\caption{A Simple Table From Pandas, No. 1}
+%\centering
+%\input{\PathToOutput/pandas_to_latex_simple_table1.tex}
+%\caption*{
+%  Here I show some data...
+%}
+%\label{table:pandas_to_latex_simple_table1.tex}
+%\end{table}
+
+
+\section{Analysis}
+
+The following analysis aims to empirically examine whether there is a quantifiable relationship between ESG events and changes in securities lending activity, such as variations in short interest ratios, loan supply ratios, and loan fees. By analyzing data on ESG incidents and securities lending metrics, the study seeks to determine if and how short sellers incorporate ESG considerations into their investment decisions, potentially using ESG events as indicators to guide their short-selling strategies.  In the realm of securities lending, several key metrics are pivotal for assessing market dynamics and investor sentiment. Below, we delve into the critical ratios and explore additional variables of interest within the Markit dataset.
+
+To systematically unpack the influence of ESG events on securities lending, we will present an array of summary statistics for each specified ratio. These statistics encompass the 10th percentile (p10), 25th percentile (p25), median (p50), 75th percentile (p75), 90th percentile (p90), mean, standard deviation (SD), and the overall sample size (N), catering to a granular analysis of each ESG characteristic level. This structured approach allows for a detailed exploration of the nuances in how varying ESG incidents might sway the decisions of short sellers and, by extension, impact the broader securities lending market. Through this lens, our investigation strives to offer a refined perspective on the intersection between ESG considerations and financial market dynamics, contributing valuable insights to both academic discourse and practical investment strategies.
+
+
+\subsection{Short Interest Ratio}
+
+This ratio, a critical indicator of market sentiment towards a company, provides insights into the proportion of shares borrowed for short selling relative to the total shares available in the market. A higher Short Interest Ratio is often interpreted as a bearish signal, suggesting a heightened interest in short selling possibly due to negative perceptions or expectations about the company's future performance.
+ \begin{equation}
+	\text{Short Interest Ratio} = \frac{\text{Shares on Loan}}{\text{Shares Outstanding}} \quad \text{or} \quad \frac{\text{QuantityOnLoan}}{\text{SHROUT}}
+	\label{eq:Short_Interest_Ratio}
+\end{equation}
+
+Each table delineated below serves as a comprehensive summary of statistical analyses, illustrating how different facets of ESG events correlate with changes in the Short Interest Ratio.
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Environmental Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_environment.tex}
+\label{table:short_interest_ratio_environment.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Social Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_social.tex}
+\label{table:short_interest_ratio_social.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Governance Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_governance.tex}
+\label{table:short_interest_ratio_governance.tex}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Novelty Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_novelty.tex}
+\label{table:short_interest_ratio_novelty.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Reach Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_reach.tex}
+\label{table:short_interest_ratio_reach.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Short Interest Ratio for Severity Level}
+\centering
+\input{\PathToOutputTables/short_interest_ratio_severity.tex}
+\label{table:short_interest_ratio_severity.tex}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Loan Supply Ratio}
+
+
+This metric measures the availability of shares for lending against the total shares outstanding. It reflects the willingness of shareholders to lend their shares for short selling, indicating the liquidity and accessibility of shares for short sellers.
+ \begin{equation}
+	\text{Loan Supply Ratio} = \frac{\text{Shares Available to be Lent}}{\text{Shares Outstanding}} \quad \text{or} \quad \frac{\text{LendableQuantity}}{\text{SHROUT}}
+	\label{eq:Loan_Supply_Ratio}
+\end{equation}
+
+By presenting these tables, we aim to shed light on the nuanced ways in which the Loan Supply Ratio is affected by different facets of ESG events.
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Environmental Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_environment.tex}
+\label{table:loan_supply_ratio_environment.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Social Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_social.tex}
+\label{table:loan_supply_ratio_social.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Governance Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_governance.tex}
+\label{table:loan_supply_ratio_governance.tex}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Novelty Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_novelty.tex}
+\label{table:loan_supply_ratio_novelty.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Reach Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_reach.tex}
+\label{table:loan_supply_ratio_reach.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Supply Ratio for Severity Level}
+\centering
+\input{\PathToOutputTables/loan_supply_ratio_severity.tex}
+\label{table:loan_supply_ratio_severity.tex}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Loan Utilisation Ratio}
+
+This ratio compares the demand to the supply of loanable shares. A higher utilization rate suggests a strong demand for borrowing shares, often associated with an increased short selling activity.
+ \begin{equation}
+	\text{Loan Utilization Ratio} = \text{Utilisation}
+	\label{eq:Loan_Utilization_Ratio}
+\end{equation}
+
+By presenting these tables, we aim to shed light on the nuanced ways in which the Loan Supply Ratio is affected by different facets of ESG events.
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Environmental Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_environment.tex}
+\label{table:loan_utilisation_ratio_environment.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Social Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_social.tex}
+\label{table:loan_utilisation_ratio_social.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Governance Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_governance.tex}
+\label{table:loan_utilisation_ratio_governance.tex}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Novelty Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_novelty.tex}
+\label{table:loan_utilisation_ratio_novelty.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Reach Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_reach.tex}
+\label{table:loan_utilisation_ratio_reach.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Utilisation Ratio for Severity Level}
+\centering
+\input{\PathToOutputTables/loan_utilisation_ratio_severity.tex}
+\label{table:loan_utilisation_ratio_severity.tex}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Loan Fee Ratio}
+
+The following sections are dedicated to analyzing the Loan Utilization Ratio, a critical measure that assesses the balance between the demand for and the supply of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilization rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
+ \begin{equation}
+	\text{Loan Fee} = \text{IndicativeFee}
+	\label{eq:Loan_Fee}
+\end{equation}
+
+The introduction of these tables aims to elucidate the relationship between ESG events and the Loan Fee, providing a nuanced perspective on how environmental and social factors not only affect the demand for borrowing shares but also how they can lead to variations in the associated costs.
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Environmental Level}
+\centering
+\input{\PathToOutputTables/loan_fee_environment.tex}
+\label{table:loan_fee_environment.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Social Level}
+\centering
+\input{\PathToOutputTables/loan_fee_social.tex}
+\label{table:loan_fee_social.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Governance Level}
+\centering
+\input{\PathToOutputTables/loan_fee_governance.tex}
+\label{table:loan_fee_governance.tex}
+\end{table}
+
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Novelty Level}
+\centering
+\input{\PathToOutputTables/loan_fee_novelty.tex}
+\label{table:loan_fee_novelty.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Reach Level}
+\centering
+\input{\PathToOutputTables/loan_fee_reach.tex}
+\label{table:loan_fee_reach.tex}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary Stats for Loan Fee Ratio for Severity Level}
+\centering
+\input{\PathToOutputTables/loan_fee_severity.tex}
+\label{table:loan_fee_severity.tex}
+\end{table}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ratios Application}
+INTRODUCTION ON THE GRAPH
+
+\begin{figure}[H]
+\centering
+\caption{Lending Indicators for Apple Inc.}
+  \centering
+  \includegraphics[width=0.75\linewidth]{\PathToOutput/apple_lend_ind.png}
+\label{fig:apple_lending_indicators}
+\end{figure}
+
+EXPLAIN THE GRAPH
+
+
+\end{document}

@@ -1,6 +1,5 @@
 '''
-This file plots apple's lending indocators and stores them in the output directory
-
+This file plots apple's lending indicators and stores them in the output directory
 '''
 
 
