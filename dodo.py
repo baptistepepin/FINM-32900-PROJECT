@@ -13,32 +13,160 @@ from doit.tools import run_once
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
 DATA_DIR = Path(config.DATA_DIR)
 
-# fmt: off
-## Helper functions for automatic execution of Jupyter notebooks
-def jupyter_execute_notebook(notebook):
-    return f"jupyter nbconvert --execute --to notebook --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
-def jupyter_to_html(notebook, output_dir=OUTPUT_DIR):
-    return f"jupyter nbconvert --to html --output-dir={output_dir} ./src/{notebook}.ipynb"
-def jupyter_to_md(notebook, output_dir=OUTPUT_DIR):
-    """Requires jupytext"""
-    return f"jupytext --to markdown --output-dir={output_dir} ./src/{notebook}.ipynb"
-def jupyter_to_python(notebook, build_dir):
-    """Convert a notebook to a python script"""
-    return f"jupyter nbconvert --to python ./src/{notebook}.ipynb --output _{notebook}.py --output-dir {build_dir}"
-def jupyter_clear_output(notebook):
-    return f"jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
-# fmt: on
+# # fmt: off
+# ## Helper functions for automatic execution of Jupyter notebooks
+# def jupyter_execute_notebook(notebook):
+#     return f"jupyter nbconvert --execute --to notebook --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
+# def jupyter_to_html(notebook, output_dir=OUTPUT_DIR):
+#     return f"jupyter nbconvert --to html --output-dir={output_dir} ./src/{notebook}.ipynb"
+# def jupyter_to_md(notebook, output_dir=OUTPUT_DIR):
+#     """Requires jupytext"""
+#     return f"jupytext --to markdown --output-dir={output_dir} ./src/{notebook}.ipynb"
+# def jupyter_to_python(notebook, build_dir):
+#     """Convert a notebook to a python script"""
+#     return f"jupyter nbconvert --to python ./src/{notebook}.ipynb --output _{notebook}.py --output-dir {build_dir}"
+# def jupyter_clear_output(notebook):
+#     return f"jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
+# # fmt: on
 
 
-def task_pull_fred():
-    """ """
-    file_dep = ["./src/load_fred.py"]
-    file_output = ["fred.parquet"]
+# def task_pull_fred():
+#     """
+#     Pulls data from FRED and saves it to a parquet file in the data/pulled directory
+#     """
+#     file_dep = ["./src/load_fred.py"]
+#     file_output = ["fred.parquet"]
+#     targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+#     return {
+#         "actions": [
+#             "ipython ./src/load_fred.py",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
+
+def task_pull_crsp():
+    '''
+    Pull data from CRSP and save it to a parquet file in the data/pulled directory
+    '''
+    file_dep = ["./src/load_crsp.py"]
+    file_output = ["crsp.parquet"]
     targets = [DATA_DIR / "pulled" / file for file in file_output]
 
     return {
         "actions": [
-            "ipython ./src/load_fred.py",
+            "ipython ./src/load_crsp.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+
+def task_pull_markit():
+    '''
+    Pull data from Markit and save it to a parquet file in the data/pulled directory
+    '''
+    file_dep = ["./src/load_markit.py"]
+    file_output = ["markit.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_markit.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_pull_reprisk():
+    '''
+    Pull data from RepRisk and save it to a parquet file in the data/pulled directory
+    '''
+    file_dep = ["./src/load_reprisk.py"]
+    file_output = ["reprisk.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/load_reprisk.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_merge_markit_crsp_reprisk():
+    '''
+    Excecute the merge_markit_crsp_reprisk.py file that will merge the data from the different sources.
+    TODO: This functions calls the other merge_markit_crsp_reprisk functions so maybe there is no need to create tasks to get this other data.
+    '''
+    file_dep = ["./src/merge_markit_crsp_reprisk.py"]
+    file_output = ["merged_data.parquet"]
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/merge_markit_crsp_reprisk.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_plot_apple_lend_ind():
+    '''
+    Plot apple's lending indicators and store the plot in the output directory
+    '''
+    file_dep = ["./src/plot_apple_lend_ind.py"]
+    file_output = ["apple_lend_ind.png"]
+    targets = [OUTPUT_DIR / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/plot_apple_lend_ind.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
+esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
+
+output_files = [f"{j + '_' + i}.parquet" for i in esg for j in lending_indicators]
+
+def task_compute_desc_stats():
+    '''
+    Compute the descriptive statistics and store them in the data directory as .parquet files
+    '''
+    file_dep = ["./src/compute_desc_stats.py"]
+    file_output = output_files
+    targets = [DATA_DIR / "pulled" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/compute_desc_stats.py",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
+
+def task_parquet_to_latex_table():
+    '''
+    Convert the .parquet files to LaTeX tables
+    '''
+    file_dep = ["./src/pandas_to_latex_tables.py"]
+    file_output = [f"{file.replace('.parquet', '.tex')}" for file in output_files]
+    targets = [OUTPUT_DIR / "tables" / file for file in file_output]
+
+    return {
+        "actions": [
+            "ipython ./src/pandas_to_latex_tables.py",
         ],
         "targets": targets,
         "file_dep": file_dep,
@@ -83,105 +211,105 @@ def task_pull_fred():
 #     }
 
 
-def task_summary_stats():
-    """ """
-    file_dep = ["./src/example_table.py"]
-    file_output = [
-        "example_table.tex",
-        "pandas_to_latex_simple_table1.tex",
-        ]
-    targets = [OUTPUT_DIR / file for file in file_output]
+# def task_summary_stats():
+#     """ """
+#     file_dep = ["./src/example_table.py"]
+#     file_output = [
+#         "example_table.tex",
+#         "pandas_to_latex_simple_table1.tex",
+#         ]
+#     targets = [OUTPUT_DIR / file for file in file_output]
 
-    return {
-        "actions": [
-            "ipython ./src/example_table.py",
-            "ipython ./src/pandas_to_latex_demo.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
-
-
-def task_example_plot():
-    """Example plots"""
-    file_dep = [Path("./src") / file for file in ["example_plot.py", "load_fred.py"]]
-    file_output = ["example_plot.png"]
-    targets = [OUTPUT_DIR / file for file in file_output]
-
-    return {
-        "actions": [
-            "ipython ./src/example_plot.py",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     return {
+#         "actions": [
+#             "ipython ./src/example_table.py",
+#             "ipython ./src/pandas_to_latex_demo.py",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
-def task_convert_notebooks_to_scripts():
-    """Preps the notebooks for presentation format.
-    Execute notebooks with summary stats and plots and remove metadata.
-    """
-    build_dir = Path(OUTPUT_DIR)
-    build_dir.mkdir(parents=True, exist_ok=True)
+# def task_example_plot():
+#     """Example plots"""
+#     file_dep = [Path("./src") / file for file in ["example_plot.py", "load_fred.py"]]
+#     file_output = ["example_plot.png"]
+#     targets = [OUTPUT_DIR / file for file in file_output]
 
-    notebooks = [
-        "01_example_notebook.ipynb",
-    ]
-    file_dep = [Path("./src") / file for file in notebooks]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
-    targets = [build_dir / f"_{stem}.py" for stem in stems]
-
-    actions = [
-        # *[jupyter_execute_notebook(notebook) for notebook in notebooks_to_run],
-        # *[jupyter_to_html(notebook) for notebook in notebooks_to_run],
-        *[jupyter_clear_output(notebook) for notebook in stems],
-        *[jupyter_to_python(notebook, build_dir) for notebook in stems],
-    ]
-    return {
-        "actions": actions,
-        "targets": targets,
-        "task_dep": [],
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     return {
+#         "actions": [
+#             "ipython ./src/example_plot.py",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
-def task_run_notebooks():
-    """Preps the notebooks for presentation format.
-    Execute notebooks with summary stats and plots and remove metadata.
-    """
-    notebooks = [
-        "01_example_notebook.ipynb",
-    ]
-    stems = [notebook.split(".")[0] for notebook in notebooks]
+# def task_convert_notebooks_to_scripts():
+#     """Preps the notebooks for presentation format.
+#     Execute notebooks with summary stats and plots and remove metadata.
+#     """
+#     build_dir = Path(OUTPUT_DIR)
+#     build_dir.mkdir(parents=True, exist_ok=True)
 
-    file_dep = [
-        # 'load_other_data.py',
-        *[Path(OUTPUT_DIR) / f"_{stem}.py" for stem in stems],
-    ]
+#     notebooks = [
+#         "01_example_notebook.ipynb",
+#     ]
+#     file_dep = [Path("./src") / file for file in notebooks]
+#     stems = [notebook.split(".")[0] for notebook in notebooks]
+#     targets = [build_dir / f"_{stem}.py" for stem in stems]
 
-    targets = [
-        ## 01_example_notebook.ipynb output
-        OUTPUT_DIR / "sine_graph.png",
-        ## Notebooks converted to HTML
-        *[OUTPUT_DIR / f"{stem}.html" for stem in stems],
-    ]
+#     actions = [
+#         # *[jupyter_execute_notebook(notebook) for notebook in notebooks_to_run],
+#         # *[jupyter_to_html(notebook) for notebook in notebooks_to_run],
+#         *[jupyter_clear_output(notebook) for notebook in stems],
+#         *[jupyter_to_python(notebook, build_dir) for notebook in stems],
+#     ]
+#     return {
+#         "actions": actions,
+#         "targets": targets,
+#         "task_dep": [],
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
-    actions = [
-        *[jupyter_execute_notebook(notebook) for notebook in stems],
-        *[jupyter_to_html(notebook) for notebook in stems],
-        *[jupyter_clear_output(notebook) for notebook in stems],
-        # *[jupyter_to_python(notebook, build_dir) for notebook in notebooks_to_run],
-    ]
-    return {
-        "actions": actions,
-        "targets": targets,
-        "task_dep": [],
-        "file_dep": file_dep,
-        "clean": True,
-    }
+
+# def task_run_notebooks():
+#     """Preps the notebooks for presentation format.
+#     Execute notebooks with summary stats and plots and remove metadata.
+#     """
+#     notebooks = [
+#         "01_example_notebook.ipynb",
+#     ]
+#     stems = [notebook.split(".")[0] for notebook in notebooks]
+
+#     file_dep = [
+#         # 'load_other_data.py',
+#         *[Path(OUTPUT_DIR) / f"_{stem}.py" for stem in stems],
+#     ]
+
+#     targets = [
+#         ## 01_example_notebook.ipynb output
+#         OUTPUT_DIR / "sine_graph.png",
+#         ## Notebooks converted to HTML
+#         *[OUTPUT_DIR / f"{stem}.html" for stem in stems],
+#     ]
+
+#     actions = [
+#         *[jupyter_execute_notebook(notebook) for notebook in stems],
+#         *[jupyter_to_html(notebook) for notebook in stems],
+#         *[jupyter_clear_output(notebook) for notebook in stems],
+#         # *[jupyter_to_python(notebook, build_dir) for notebook in notebooks_to_run],
+#     ]
+#     return {
+#         "actions": actions,
+#         "targets": targets,
+#         "task_dep": [],
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
 
 
 # def task_knit_RMarkdown_files():
@@ -216,29 +344,29 @@ def task_run_notebooks():
 #     }
 
 
-def task_compile_latex_docs():
-    """Example plots"""
-    file_dep = [
-        "./reports/report_example.tex",
-        "./reports/slides_example.tex",
-        "./src/example_plot.py",
-        "./src/example_table.py",
-    ]
-    file_output = [
-        "./reports/report_example.pdf",
-        "./reports/slides_example.pdf",
-    ]
-    targets = [file for file in file_output]
+# def task_compile_latex_docs():
+#     """Example plots"""
+#     file_dep = [
+#         "./reports/report_example.tex",
+#         "./reports/slides_example.tex",
+#         "./src/example_plot.py",
+#         "./src/example_table.py",
+#     ]
+#     file_output = [
+#         "./reports/report_example.pdf",
+#         "./reports/slides_example.pdf",
+#     ]
+#     targets = [file for file in file_output]
 
-    return {
-        "actions": [
-            "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
-            "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
-            "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
-            "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
-            # "latexmk -CA -cd ../reports/",
-        ],
-        "targets": targets,
-        "file_dep": file_dep,
-        "clean": True,
-    }
+#     return {
+#         "actions": [
+#             "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
+#             "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
+#             # "latexmk -CA -cd ../reports/",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
