@@ -3,18 +3,7 @@ Do short sellers respond to ESG ratings?
 
 # Task List
 
-- [ ] Create file `calculate_ratios.py` to calculate the ratios from the merged data
-
 - [ ] Create file `create_report.py` to create the final report (in LaTeX format, using the dataframes generated in the ratios file)
-- [ ] Update the `dodo.py` file to include all the tasks (pulling data, merging data, calculating ratios, and creating the final report)
-
-- [ ] Update the `requirements.txt` file that lists all the dependencies for the project
-
-- [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
-
-- [ ] Look into a better merging on names (when all the rest will be working)
-
-Should we add a specific file for cleaning the data? Or should we include this in the `merge_data.py` file?
 
 
 Baptiste:
@@ -23,21 +12,27 @@ Baptiste:
 - [x] Create file `load_reprisk.py` to pull data from RepRisk
 - [x] Create file `merge_data.py` to merge the data from RepRisk with Markit on ISIN and CUSIP
 - [ ] Look into a better merging on names (when all the rest will be working)
+- [x] Create file 'pandas_to_latex_tables.py' to convert pandas dataframes to LaTeX tables
+- [x] Update the `requirements.txt` file that lists all the dependencies for the project
 
 Adriana:
-- [ ] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
-- [ ] Update the `README.md` file that explains the project and how to run the code
-- [ ] Complete all the docstrings for the functions in the code
-- [ ] Complete all the headers for the created files
+- [x] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
+- [x] Update the `README.md` file that explains the project and how to run the code
+- [x] Complete all the docstrings for the functions in the code
+- [x] Complete all the headers for the created files
+- [ ] Create file the report
 
 Pranav:
 - [ ] Create file `test_load_markit.py` to test the `load_markit.py` file
 - [ ] Create file `test_load_reprisk.py` to test the `load_reprisk.py` file
 - [ ] Create file `test_load_crsp.py` to test the `load_crsp.py` file
+- [ ] Create file `test_merge_data.py` to test the `merge_data.py` file
 
 Diego:
 - [x] Look at CUSIP and the mapping of it in the different data sources for merging
 - [x] Create file `merge_data.py` to merge the data from Markit with CRSP on CUSIP
+- [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
+- [ ] Update the `dodo.py` file to include all the tasks
 
 # About this project
 
