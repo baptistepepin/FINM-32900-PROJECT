@@ -11,8 +11,6 @@ import seaborn as sns
 from compute_desc_stats import read_data
 mpl.rcParams['font.family'] = 'Times New Roman'
 
-cusip_list = ['037833100', '36467W109', ]
-name_list = ['Apple Inc', 'GameStop Corp']
 
 def plot_lend_ind(df, cusip_list, name_list, output_dir=config.OUTPUT_DIR):
     '''
@@ -49,5 +47,8 @@ def plot_lend_ind(df, cusip_list, name_list, output_dir=config.OUTPUT_DIR):
 
 if __name__ == '__main__':
     df = read_data("merged_data")
+
+    cusip_list = ['037833100', '36467W109','02209S103']
+    name_list = ['Apple Inc', 'GameStop Corp', 'Altria Group Inc']
 
     _ = plot_lend_ind(df, cusip_list, name_list)
