@@ -77,6 +77,10 @@ For this project, we have chosen to utilize multiple datasets, including:
 
 * The **IHS Markit library** is a leading, global financial information services company with over 15,000 employees. The company provides independent data, valuations and trade processing across all asset classes in order to enhance transparency, reduce risk and improve operational efficiency.
 
+We have also referred to a third database:
+
+* The **CRSP (Center for Research in Security Prices) database** offers a historical perspective on stock prices, returns, and trading volumes, alongside crucial market indicators. For this study, the CRSP database is instrumental in furnishing the missing pieces of our dataset puzzle, especially in terms of shares outstanding. By leveraging CRSP data, we can accurately compute the financial ratios critical to our analysis. 
+
 After thorough data cleaning, analysis, and comparison of the datasets mentioned above, the project will elucidate whether a relationship exists between ESG events and securities lending activities, offering insights into the considerations of short sellers regarding ESG events in their investment strategies.
 
 # Quick Start
