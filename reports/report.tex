@@ -92,6 +92,7 @@ To systematically unpack the influence of ESG events on securities lending, we w
 \subsection{Short Interest Ratio}
 
 This ratio, a critical indicator of market sentiment towards a company, provides insights into the proportion of shares borrowed for short selling relative to the total shares available in the market. A higher Short Interest Ratio is often interpreted as a bearish signal, suggesting a heightened interest in short selling possibly due to negative perceptions or expectations about the company's future performance.
+
  \begin{equation}
 	\text{Short Interest Ratio} = \frac{\text{Shares on Loan}}{\text{Shares Outstanding}} \quad \text{or} \quad \frac{\text{QuantityOnLoan}}{\text{SHROUT}}
 	\label{eq:Short_Interest_Ratio}
@@ -207,8 +208,8 @@ According to the Markit Data Dictionary, this variable is computed as "the value
 
 
  \begin{equation}
-	\text{Loan Utilization Ratio} = \text{Utilisation}
-	\label{eq:Loan_Utilization_Ratio}
+	\text{Loan Utilisation Ratio} = \text{Utilisation}
+	\label{eq:Loan_Utilisation_Ratio}
 \end{equation}
 
 By presenting these tables, we aim to shed light on the nuanced ways in which the Loan Supply Ratio is affected by different facets of ESG events.
@@ -260,7 +261,7 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loan Fee Ratio}
 
-The following sections are dedicated to analyzing the Loan Utilization Ratio, a critical measure that assesses the balance between the supply and demand of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilization rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
+The following sections are dedicated to analyzing the Loan Utilisation Ratio, a critical measure that assesses the balance between the supply and demand of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilisation rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
  \begin{equation}
 	\text{Loan Fee} = \text{IndicativeFee}
 	\label{eq:Loan_Fee}
@@ -317,7 +318,13 @@ The introduction of these tables aims to elucidate the relationship between ESG 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ratios Application}
 
-In this section we are going to analyze the evolution of the lending indicators for Apple Inc. over time. We will use the following ratios: Short Interest Ratio, Loan Supply Ratio, Loan Utilization Ratio, and Loan Fee Ratio. The data is presented in the following figure.
+In this section we are going to analyze the evolution of the lending indicators for Apple Inc, GameStop Corp. and Altria Group Inc. over time. We will use the following ratios: Short Interest Ratio, Loan Supply Ratio, Loan Utilisation Ratio, and Loan Fee Ratio. The data is presented in the following figure.
+
+\subsubsection{Apple Inc.}
+
+Apple Inc. is a company that designs, produces and commercializes electronic products. We are going to analyze the evolution of Apple's Lending Metrics since as of March 2024, it was the second largest valued company in the US Stock market, just below Microsoft Inc that surpassed it in January of the same year.
+
+Therefore, we can categorize this company as a 'mega cap' company, and an in-between on growth and core in terms of it's categorization in terms of Price to Earnings ratio and other indicators used to build that categorization. For this type of stocks, it is important to note that Short Sellers usually don't have enough market participation in terms of the total shares outstanding to impose important pressures on determining the stock's price.
 
 \begin{figure}[H]
 \centering
@@ -330,12 +337,18 @@ In this section we are going to analyze the evolution of the lending indicators 
 Let's break down the analysis of the previous plot into each subplot.
 
 \begin{itemize}
-	\item Short Interest Ratio: While displaying moderate fluctuations, has notable inflections that may correspond with ESG-related events. These changes imply a varying degree of shareholder willingness to lend out shares for short selling, potentially reflecting a higher liquidity or investor confidence.
-	\item Loan Supply Ratio: It can be noted that it remains relatively stable over the observed period and with a tendency to the upside, suggesting a consistent availability of Apple's shares for lending. This stability is indicative of that significant changes in shares outstanding are uncommon, not generating high spikes in short selling. However, the movements within the ratio may reflect strategic financial decisions by the company, such as share buybacks or issuance of new shares, which can affect the numerator and denominator of the ratio respectively.
-	\item Loan Utilization Ratio: It can be noted the higher volatility it displays when compared with the other indicators, with pronounced peaks suggesting moments of increased demand for borrowing shares. These peaks are often aligned with short-selling activities, where investors anticipate a decline in stock prices. Further studies can be done on the relationship between this peaks and valleys and wether they are caused by the usual market events such as earnings reports, product launches, or publications of macroeconomic indicators or ESG-releted events.
-	\item Loan Fee Ratio: For Apple Inc, this is the indicator that seems the most stationary at first look. However, out of all of the ratios computed for Apple Inc, the loan fee seems to follow a process similar to a random walk, with no clear trend or seasonality.
+	\item\textbf{Short Interest Ratio:} While displaying moderate fluctuations, has notable inflections that may correspond with ESG-related events. These changes imply a varying degree of shareholder willingness to lend out shares for short selling, potentially reflecting a higher liquidity or investor confidence.
+	\item\textbf{Loan Supply Ratio:} It can be noted that it remains relatively stable over the observed period and with a tendency to the upside, suggesting a consistent availability of Apple's shares for lending. This stability is indicative of that significant changes in shares outstanding are uncommon, not generating high spikes in short selling. However, the movements within the ratio may reflect strategic financial decisions by the company, such as share buybacks or issuance of new shares, which can affect the numerator and denominator of the ratio respectively.
+	\item\textbf{Loan Utilisation Ratio:} It can be noted the higher volatility it displays when compared with the other indicators, with pronounced peaks suggesting moments of increased demand for borrowing shares. These peaks are often aligned with short-selling activities, where investors anticipate a decline in stock prices. Further studies can be done on the relationship between this peaks and valleys and wether they are caused by the usual market events such as earnings reports, product launches, or publications of macroeconomic indicators or ESG-releted events.
+	\item\textbf{Loan Fee Ratio:} For Apple Inc, this is the indicator that seems the most stationary at first look. However, out of all of the ratios computed for Apple Inc, the loan fee seems to follow a process similar to a random walk, with no clear trend or seasonality.
 \end{itemize}
 
+
+\subsubsection{GameStop Corp.}
+
+GameStop Corp. is a company that commercializes video games, consumer electronics and gaming merchandise in the retail industry. We can categorize this stock as a small-cap, core company. Whose business model was starting to get obsolete as the digital video game industry started to rise. Thererfore, as we we will discuss in the following paragraph, it is important to note that there might be market agents that may have an elevated market participation quote and therefore might be able to impact the company's stock price to a certain degree.
+
+In 2021, the stock of the company suffered a so called Short Squeeze, that resulted in an increase of around 1,500\% in the price of the stock. Although this phenomenon was not caused directly by ESG- related events, the computed lending metrics are going to be analyzed to assess how the behave in such an unusual occurrence like this one.
 
 \begin{figure}[H]
 	\centering
@@ -345,31 +358,48 @@ Let's break down the analysis of the previous plot into each subplot.
 	\label{fig:gamestop_lending_indicators}
 \end{figure}
 
-GameStop Corp. is a company that commercializes video games, consumer electronics and gaming merchandise in the retail industry.
-
-In 2021, the stock of the company suffered a so called Short Squeeze, that resulted in an increase of around 1,500\% in the price of the stock. Although this phenomenon was not caused directly by ESG- related events, the computed lending metrics are going to be analyzed to assess how the behave in such an unusual occurrence like this one.
+Let's break down the analysis of the previous plot into each subplot.
 
 \begin{itemize}
-	\item Short Interest Ratio: fluctuates significantly, with a high peak reaching a moment when more than 30\% of the company's Shares Outstanding where being shorted in the marked. These abrupt changes may correlate with the social-media-driven trading surges that GameStop has experienced, contrasting with the more tempered fluctuations seen in Apple's ratio.
-	\item Loan Supply Ratio: the graph shows a trend that, although progressively increasing, includes sharp movements both upward and downward. These movements are indicative of a more dynamic change in the availability of shares for lending compared to Apple's relatively stable pattern. This could be a reflection of GameStop's more volatile stock price and the rapid changes in investor behavior that have characterized its trading patterns in recent years.
-	\item Loan Utilization Ratio: exhibits high volatility, but most importantly, its level moves in the range between 100 and 50, making an important distinction when compared to the Loan Utilization Ratio from Apple, that stayed below 1.
-	\item Loan Fee Ratio: stands out with its pronounced spike that declines over time, diverging from Apple's more random walk-like behavior. This pattern suggests that borrowing GameStop shares occasionally became particularly expensive, which could be due to limited supply or a surge in demand, likely related to the same speculative trading that affects its Short Interest and Loan Utilization Ratios.
+	\item\textbf{Short Interest Ratio:} fluctuates significantly, with a high peak reaching a moment when more than 30\% of the company's Shares Outstanding where being shorted in the marked. These abrupt changes may correlate with the social-media-driven trading surges that GameStop has experienced, contrasting with the more tempered fluctuations seen in Apple's ratio.
+	\item\textbf{Loan Supply Ratio:} the graph shows a trend that, although progressively increasing, includes sharp movements both upward and downward. These movements are indicative of a more dynamic change in the availability of shares for lending compared to Apple's relatively stable pattern. This could be a reflection of GameStop's more volatile stock price and the rapid changes in investor behavior that have characterized its trading patterns in recent years.
+	\item\textbf{Loan Utilisation Ratio:} exhibits high volatility, but most importantly, its level moves in the range between 100 and 50, making an important distinction when compared to the Loan Utilisation Ratio from Apple, that stayed below 1.
+	\item\textbf{Loan Fee Ratio:} stands out with its pronounced spike that declines over time, diverging from Apple's more random walk-like behavior. This pattern suggests that borrowing GameStop shares occasionally became particularly expensive, which could be due to limited supply or a surge in demand, likely related to the same speculative trading that affects its Short Interest and Loan Utilisation Ratios.
 \end{itemize}
 
-It is also important not only to compare the trends and volatilities but also the levels of the ratios. While Apple's Short Interest Ratio fluctuated between 0.003 and 0.0005, GameStop's Short Interest Ratio fluctuated between the 0.3 - 0.1 levels. Moreover, the drastic difference in the Loan Utilization Ratio which indicated that the total value of assets on loan from lenders was lower than the total lendable value of the asset, which made sense for such a stable company like Apple Inc.
+It is also important not only to compare the trends and volatilities but also the levels of the ratios. While Apple's Short Interest Ratio fluctuated between 0.003 and 0.0005, GameStop's Short Interest Ratio fluctuated between the 0.3 - 0.1 levels. Moreover, the drastic difference in the Loan Utilisation Ratio which indicated that the total value of Apple stocks on loan from lenders was lower than the total lendable value of the Apple stock.
+
+For GameStop, a higher than 1 Loan Utilisation Ratio is appreciated. In this case, it means that the total value of GameStop stock on loan from lenders was higher than the total lendable value of the GameStop stock. This can only be possible with a high leverage in the stock lending market.
 
 
+\subsubsection{Altria Group Inc.}
 
+Altria Group Inc. is one of the world's largest producers and commercializers of tobacco, cigarettes and related products. Since this company is involved with the manufacture of tobacco-related products, it is often avoided by investors that are keen on ESG factors, getting explicitly excluded from important tradable ESG investment products such as mutual funds or ETFs.
 
+More specifically, Altria Group Inc is being chosen in this analysis since, starting from 2022, the company was involved in legal issues including the payment of USD 235 million to settle at least 6,000 lawsuits accusing it of fueling a teen vaping epidemic through its former investment in e-cigarette maker Juul Labs Inc.
 
+\begin{figure}[H]
+	\centering
+	\caption{Lending Indicators for Altria Group Inc.}
+	  \centering
+	  \includegraphics[width=1\linewidth]{\PathToOutput/Altria Group Inc_lend_ind.png}
+	\label{fig:altria_lending_indicators}
+\end{figure}
+
+Let's break down the analysis of the previous plot into each subplot.
+
+\begin{itemize}
+	\item\textbf{Short Interest Ratio:} The Short Interest Ratio demonstrates significant fluctuations, with sporadic sharp peaks that could be associated with periods of negative news related to the company’s legal challenges or regulatory pressures on vaping products. The variability in this ratio may suggest investor caution, driven by the company's exclusion from ESG investment products and the resulting impact on share liquidity and availability for short sellers.
+	\item\textbf{Loan Supply Ratio:} Altria's Loan Supply Ratio shows a descending trend towards the end of the observed period, which may indicate a contraction in the availability of shares for lending. This downward movement might be a reflection of the company's strategic financial activities, such as share repurchases, or a reduced willingness of shareholders to lend their shares amidst the company's legal settlements and the controversy surrounding its investment in vaping products.
+	\item\textbf{Loan Utilisation Ratio:} The Loan Utilisation Ratio reveals periods of high volatility with pronounced spikes. These peaks could represent moments of heightened borrowing demand, potentially linked to traders speculating on price decreases in response to legal rulings or adverse public health campaigns against smoking and vaping. The sharp movements suggest that the demand for shorting Altria's stock is influenced by significant external events that impact the company's reputation and regulatory environment.
+	\item\textbf{Loan Fee Ratio:} exhibits variability with one notable spike to the upside, suggesting one specific period where the cost of borrowing Altria's shares increases substantially, further studies can explore the causation of this spike. These could coincide with increased market uncertainty or speculation related to Altria’s legal and regulatory challenges. The spikes in the Loan Fee Ratio might reflect short-term constraints in supply or heightened risk perceived by lenders due to the company's potential financial liabilities and market risks.
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \doublespacing
 \section{Conclusion}
-
-
-
 
 
 
