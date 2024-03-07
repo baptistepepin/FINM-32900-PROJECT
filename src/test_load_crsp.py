@@ -20,6 +20,11 @@ def test_load_crsp():
     """
     Tests the basic functionality and output of the load_CRSP function ensuring it returns a pandas DataFrame with the 
     expected columns and data types.
+    
+    This test function performs the following checks:
+        * The output is a pandas DataFrame.
+        * The DataFrame contains specific expected columns: 'cusip9', 'date', 'cusip8', and 'shrout'.
+        * Each of these columns has the expected data type.
     """
     df = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
@@ -44,12 +49,10 @@ def test_load_crsp_data_validity():
     Validates the data integrity and correctness of the DataFrame returned by the load_CRSP function.
 
     The function conducts several checks to confirm data validity:
-        * The date range of the returned data spans at least from the start of 2022 to the end of 2023, ensuring 
-            coverage of the specified time frame.
+        * The date range of the returned data spans at least from the start of 2022 to the end of 2023.
         * There are no missing values (NaNs) within the sampled subset of data, indicating completeness.
         * The shape of the sampled DataFrame matches expected dimensions, confirming the expected amount of data is returned.
-        * The mean of the 'shrout' column aligns with a predetermined value, verifying the accuracy of numeric 
-            data within the dataset.
+        * The mean of the 'shrout' column aligns with a predetermined value, verifying the accuracy data. 
     """
     df = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
