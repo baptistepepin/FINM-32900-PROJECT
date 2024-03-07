@@ -34,7 +34,7 @@ def plot_lend_ind(df, cusip_list, name_list, output_dir=config.OUTPUT_DIR):
         ax[0, 1].tick_params(axis='x', rotation=45)
 
         ax[1, 0].plot(selected_stock['date'], selected_stock['loan utilisation ratio'], linewidth=1)
-        ax[1, 0].set_title('Loan Utilization Ratio')
+        ax[1, 0].set_title('Loan Utilisation Ratio')
         ax[1, 0].tick_params(axis='x', rotation=45)
 
         ax[1, 1].plot(selected_stock['date'], selected_stock['loan fee'], linewidth=1)
