@@ -1,22 +1,17 @@
-"""Load project configurations from .env files.
-Provides easy access to paths and credentials used in the project.
-Meant to be used as an imported module.
-
-If `config.py` is run on its own, it will create the appropriate
-directories.
-
-For information about the rationale behind decouple and this module,
-see https://pypi.org/project/python-decouple/
-
-Note that decouple mentions that it will help to ensure that
-the project has "only one configuration module to rule all your instances."
-This is achieved by putting all the configuration into the `.env` file.
-You can have different sets of variables for difference instances, 
-such as `.env.development` or `.env.production`. You would only
-need to copy over the settings from one into `.env` to switch
-over to the other configuration, for example.
-
 """
+This module facilitates loading project configurations from .env files, providing streamlined access to paths, credentials, 
+and other configuration settings necessary for the project's operation. It is intended for use as an imported module across 
+various parts of the project to ensure consistent access to these configurations. If `config.py` is run on its own, it will 
+create the appropriate directories.
+
+Utilizing the python-decouple package, this module adheres to the best practices of separating configuration from code, enabling 
+easy switches between different environments (e.g., development, production) by simply changing the .env file. This separation 
+enhances security and flexibility, allowing for different configurations without altering the codebase.
+
+For detailed guidance on using python-decouple and its benefits in managing project configurations, refer to its documentation 
+on PyPI. https://pypi.org/project/python-decouple/
+"""
+
 from decouple import config
 from pathlib import Path
 

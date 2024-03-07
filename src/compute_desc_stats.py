@@ -1,5 +1,9 @@
 """
-TODO: Add description
+This module is designed to process financial data, specifically focusing on the analysis of lending indicators and 
+ESG (Environmental, Social, and Governance) scores. It includes functionality to read data from a .parquet file, 
+compute descriptive statistics for lending indicators across different ESG dimensions, and store the results in a 
+specified output directory. The primary goal is to facilitate the examination of the relationship between lending 
+behaviors and ESG metrics.
 """
 
 import pandas as pd
@@ -10,7 +14,7 @@ import config
 
 def read_data(file_name, data_dir=config.DATA_DIR):
     """
-    Read the .parquet file in the data directory
+    Reads a .parquet file from a specified directory and returns a pandas DataFrame.
     """
     file_path = Path(data_dir) / "pulled" / f"{file_name}.parquet"
     if file_path.exists():
@@ -23,7 +27,11 @@ def read_data(file_name, data_dir=config.DATA_DIR):
 
 def compute_desc_stats(df):
     """
-    Compute the descriptive statistics
+    Computes descriptive statistics for specified lending indicators across different ESG (Environmental, Social,
+    and Governance) score categories and saves the results to .parquet files in the output directory.
+
+    This function specifically calculates the descriptive statistics, including percentiles, for combinations
+    of lending indicators and ESG scores, facilitating the analysis of their relationships.
     """
     lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
     esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
