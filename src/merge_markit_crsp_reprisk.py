@@ -1,3 +1,11 @@
+"""
+The `merge_markit_crsp_reprisk.py` module contain the `merge_data` function designed to integrate a pre-merged Markit and CRSP 
+dataframe with a Reprisk dataframe, based on shared 'cusip' and 'date' fields. It first checks for an existing cached file of 
+the merged data to enhance efficiency; if found, it loads this data to avoid reprocessing. If no cached data is available, it 
+proceeds with the merging process. The function allows for the newly merged dataset to be cached, saving it to a specified 
+directory, thereby facilitating faster future access. 
+"""
+
 import os
 
 import pandas as pd
@@ -22,7 +30,7 @@ def merge_data(
     save_cache=False,
 ):
     """
-
+    
     """
 
     flag = 1

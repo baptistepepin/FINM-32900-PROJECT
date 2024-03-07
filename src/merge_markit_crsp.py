@@ -1,10 +1,13 @@
 """
-This module merges the different data sources.
+The `merge_markit_crsp.py` module defines a function to merge Markit and CRSP datasets based on dates and CUSIP8 identifiers. 
+The module contains a function that checks for a cached version of the merged data in a specified directory to improve 
+efficiency and avoid repeated processing. If no cached file is found, then the function proceeds to compute four ratios 
+needed for further analysis. These ratios are short interest, loan supply, loan utilisation, and loan fees. Finally, 
+the merged dataset can optionally be saved to a cache file for future use, streamlining subsequent data retrieval processes. 
 
-The best way to do so is by using a match on CUSIP for CRSP and Markit in order to retrieve the number of shares outstanding.
-
-For RepRisk, WRDS advises to use the ISIN number to match on CUSIP.
-A lot of ISIN numbers are missing in the RepRisk data, so a match on company name is also necessary.
+When integrating RepRisk data with these datasets, the recommended practice from WRDS is to use the ISIN number as the primary 
+key for matching with CUSIP. However, due to frequent absences of ISIN numbers in RepRisk data, a secondary matching criterion 
+based on company names is also employed to ensure comprehensive data integration.
 """
 import os
 
