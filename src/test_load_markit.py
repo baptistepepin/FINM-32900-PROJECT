@@ -1,6 +1,6 @@
 """
-The module `test_load_markit.py` is dedicated to testing the `load_Markit` function, to verify that the function accurately loads, formats, and caches data, 
-ensuring it meets the necessary criteria for subsequent financial analysis. 
+The module `test_load_markit.py` is dedicated to testing the `load_Markit` function, to verify that the function accurately loads, 
+formats, and caches data, ensuring it meets the necessary criteria for subsequent financial analysis. 
 """
 
 import pandas as pd
@@ -17,12 +17,13 @@ END_DATE = config.END_DATE
 
 def test_load_markit():
     """
-    The function tests the functionality of the load_Markit function to ensure it correctly returns a pandas DataFrame with the specified columns and data types.
+    The function tests the functionality of the load_Markit function to ensure it correctly returns a pandas DataFrame with 
+    the specified columns and data types.
 
     The test verifies the following conditions:
-        * The output is a pandas DataFrame, confirming data structure
-        * The DataFrame includes all the expected columns, such as 'datadate', 'cusip', 'isin', and several measures related to securities lending like 'indicativefee' and 'utilisation'.
-        * Each column in the DataFrame has the correct data type, ensuring that dates are in datetime format, identifiers like 'cusip' and 'isin' are strings, and numerical metrics are represented as float64 for accurate calculations.
+        * The output is a pandas DataFrame, confirming data structure.
+        * The DataFrame includes all the expected columns.
+        * Each column in the DataFrame has the correct data type. 
     """
     df = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
@@ -62,8 +63,8 @@ def test_load_markit_data_validity():
     This function performs several checks:
         * It confirms the data coverage extends from the start of 2022 to the end of 2023, ensuring comprehensive analysis.
         * It verifies the DataFrame's shape matches expected dimensions, indicating the correct volume of data is retrieved.
-        * It checks for the presence of NaN values in specific columns, assessing data completeness and highlighting areas where data may be missing.
-        * It calculates and confirms the accuracy of the mean values for columns such as 'indicativefee', 'utilisation', 'shortloanquantity', and 'lendablequantity', ensuring the data's numerical integrity.
+        * It checks for the presence of NaN values in specific columns, assessing data completeness.
+        * It calculates and confirms the accuracy of the mean values for specific columns. 
     """
     df = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
@@ -96,7 +97,6 @@ def test_load_markit_data_validity():
     }
     assert dict(df_sampled.isna().sum())==NaNs
 
-    
     # Check that the mean of the indicative fee, utilisation, short loan quantity, lendable quantity columns is correct
     means = {'indicativefee': 0.11534523060568044, 
              'utilisation': 16.35466789109963, 
