@@ -48,7 +48,7 @@ def parquet_to_latex_table(output_dir=OUTPUT_DIR):
         df = pd.read_parquet(OUTPUT_DIR / "stats" / file_name)
 
         latex_table_string = df.to_latex(float_format=float_format_func).replace("%", "\%")
-        path = output_dir / "tables" / f'{file_name.replace(" ","_")}.tex'
+        path = output_dir / "tables" / f'{file_name.replace(" ","_").replace(".parquet", ".tex")}'
         with open(path, "w") as text_file:
             text_file.write(latex_table_string)
 
