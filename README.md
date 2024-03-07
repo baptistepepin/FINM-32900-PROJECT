@@ -3,24 +3,21 @@ Do short sellers respond to ESG ratings?
 
 # Task List
 
-- [ ] Create file `create_report.py` to create the final report (in LaTeX format, using the dataframes generated in the ratios file)
-
-
 Baptiste:
 - [x] Create file `load_crsp.py` to pull data from CRSP
 - [x] Create file `load_markit.py` to pull data from Markit
 - [x] Create file `load_reprisk.py` to pull data from RepRisk
 - [x] Create file `merge_data.py` to merge the data from RepRisk with Markit on ISIN and CUSIP
-- [ ] Look into a better merging on names (when all the rest will be working)
-- [x] Create file 'pandas_to_latex_tables.py' to convert pandas dataframes to LaTeX tables
-- [x] Update the `requirements.txt` file that lists all the dependencies for the project
+- [x] Look into a better merging on names (when all the rest will be working) -- THIS HAS NOT BEEN MERGED
+- [x] Create file `pandas_to_latex_tables.py` to convert pandas dataframes to LaTeX tables
+- [x] Update the `requirements.txt` file that lists all the dependencies for the project and the yml file
 
 Adriana:
-- [x] Complete the notebook `WRDS - Data - Demo.ipynb` and rename it, to explain the process of our project
+- [x] Complete the notebook `Project_Notebook.ipynb`, to explain the process of our project
 - [x] Update the `README.md` file that explains the project and how to run the code
 - [x] Complete all the docstrings for the functions in the code
 - [x] Complete all the headers for the created files
-- [ ] Create file the report
+- [x] Create the report
 
 Pranav:
 - [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
@@ -32,9 +29,9 @@ Pranav:
 
 Diego:
 - [x] Look at CUSIP and the mapping of it in the different data sources for merging
-- [x] Create file `merge_data.py` to merge the data from Markit with CRSP on CUSIP
 - [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
-- [ ] Update the `dodo.py` file to include all the tasks
+- [ ] Create file to calculate the difference in ratios
+- [x] Update the `dodo.py` file to include all the tasks
 
 # About this project
 
