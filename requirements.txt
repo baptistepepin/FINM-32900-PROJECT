@@ -46,6 +46,7 @@ fonttools==4.49.0
 frozenlist==1.4.1
 idna==3.4
 importlib-metadata==7.0.1
+iniconfig==1.1.1
 ipykernel==6.28.0
 ipython==8.20.0
 ipywidgets==8.0.4
@@ -95,6 +96,7 @@ pexpect==4.8.0
 pillow==10.2.0
 pip==23.3.1
 platformdirs==3.10.0
+pluggy==1.0.0
 ply==3.11
 prometheus-client==0.14.1
 prompt-toolkit==3.0.43
@@ -111,6 +113,7 @@ pyparsing==3.1.1
 PyQt5==5.15.10
 PyQt5-sip==12.13.0
 PySocks==1.7.1
+pytest==7.4.0
 python-dateutil==2.8.2
 python-decouple==3.8
 python-json-logger==2.0.7
