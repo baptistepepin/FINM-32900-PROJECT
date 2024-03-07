@@ -117,7 +117,7 @@ def task_plot_lend_ind():
     Plot apple's lending indicators and store the plot in the output directory
     '''
     file_dep = ["./src/plot_lend_ind.py"]
-    file_output = ["output/Apple Inc_lend_ind.png", "output/GameStop Corp_lend_ind.png"]
+    file_output = ["output/Apple Inc_lend_ind.png", "output/GameStop Corp_lend_ind.png", "output/Altria Group Inc_lend_ind.png"]
     targets = [OUTPUT_DIR / file for file in file_output]
 
     return {
