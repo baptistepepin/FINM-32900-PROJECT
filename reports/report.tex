@@ -237,7 +237,7 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loan Fee Ratio}
 
-The following sections are dedicated to analyzing the Loan Utilization Ratio, a critical measure that assesses the balance between the demand for and the supply of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilization rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
+The following sections are dedicated to analyzing the Loan Utilization Ratio, a critical measure that assesses the balance between the supply and demand of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilization rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
  \begin{equation}
 	\text{Loan Fee} = \text{IndicativeFee}
 	\label{eq:Loan_Fee}
@@ -293,17 +293,44 @@ The introduction of these tables aims to elucidate the relationship between ESG 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ratios Application}
-INTRODUCTION ON THE GRAPH
+
+In this section we are going to analyze the evolution of the lending indicators for Apple Inc. over time. We will use the following ratios: Short Interest Ratio, Loan Supply Ratio, Loan Utilization Ratio, and Loan Fee Ratio. The data is presented in the following figure.
 
 \begin{figure}[H]
 \centering
 \caption{Lending Indicators for Apple Inc.}
   \centering
-  \includegraphics[width=0.75\linewidth]{\PathToOutput/apple_lend_ind.png}
+  \includegraphics[width=1\linewidth]{\PathToOutput/Apple Inc_lend_ind.png}
 \label{fig:apple_lending_indicators}
 \end{figure}
 
-EXPLAIN THE GRAPH
+Let's break down the analysis of the previous plot into each subplot.
+
+\begin{itemize}
+	\item Short Interest Ratio: While displaying moderate fluctuations, has notable inflections that may correspond with ESG-related events. These changes imply a varying degree of shareholder willingness to lend out shares for short selling, potentially reflecting a higher liquidity or investor confidence.
+	\item Loan Supply Ratio: It can be noted that it remains relatively stable over the observed period and with a tendency to the upside, suggesting a consistent availability of Apple's shares for lending. This stability is indicative of that significant changes in shares outstanding are uncommon, not generating high spikes in short selling. However, the movements within the ratio may reflect strategic financial decisions by the company, such as share buybacks or issuance of new shares, which can affect the numerator and denominator of the ratio respectively.
+	\item Loan Utilization Ratio: It can be noted the higher volatility it displays when compared with the other indicators, with pronounced peaks suggesting moments of increased demand for borrowing shares. These peaks are often aligned with short-selling activities, where investors anticipate a decline in stock prices. Further studies can be done on the relationship between this peaks and valleys and wether they are caused by the usual market events such as earnings reports, product launches, or publications of macroeconomic indicators or ESG-releted events.
+	\item Loan Fee Ratio: For Apple Inc, this is the indicator that seems the most stationary at first look. However, out of all of the ratios computed for Apple Inc, the loan fee seems to follow a process similar to a random walk, with no clear trend or seasonality.
+\end{itemize}
+
+
+\begin{figure}[H]
+	\centering
+	\caption{Lending Indicators for GameStop Corp.}
+	  \centering
+	  \includegraphics[width=1\linewidth]{\PathToOutput/GameStop Corp_lend_ind.png}
+	\label{fig:gamestop_lending_indicators}
+\end{figure}
+
+
+Let's break down the analysis of the previous plot into each subplot for GameStop Inc.
+
+\begin{itemize}
+	\item Short Interest Ratio: .
+	\item Loan Supply Ratio: .
+	\item Loan Utilization Ratio: .
+	\item Loan Fee Ratio: 
+\end{itemize}
 
 
 \end{document}
