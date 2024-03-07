@@ -60,7 +60,28 @@ By delving into the environmental, social, and governance dimensions of ESG even
 %\label{table:pandas_to_latex_simple_table1.tex}
 %\end{table}
 
+\newpage
+\section{Project Overview}
 
+This project has been challenging from the beginning, as the aim was not merely to replicate a graph or table from an existing study but to create a set of summary statistic metrics to answer a specific question. The absence of a benchmark paper made it difficult to compare our progress and verify if we were on the correct track. Nonetheless, the main objective of our project was to evaluate whether there exists a relationship between an ESG event and securities lending activity, and if short sellers incorporate these ESG events into their investment decisions.
+
+To properly answer the stated question, we needed to pull data from different market data sources, clean it, and generate qualitative and quantitative metrics to conduct a thorough analysis.
+
+Our project incorporates datasets from multiple libraries within WRDS to ensure a comprehensive approach to our investigation. From the RepRisk Library, we sourced data evaluating ESG risks and business conduct, as this incident-based data covers a spectrum of issues, including environmental impacts, labor practices, human rights, supply chain management, corruption, and others. Additionally, this library provides the RepRisk Index (RRI) and RepRisk Rating (RRR), which quantify reputational risk exposure related to ESG issues. Within WRDS, we also drew upon data from the IHS Markit library, which provides independent data, valuations, and trade processing across all asset classes.
+
+Lastly, we extracted data from the Center for Research in Security Prices (CRSP) database, offering historical stock prices, returns, trading volumes, and essential market indicators. The CRSP database is particularly valuable for filling gaps in our dataset, especially concerning shares outstanding. This information is pivotal for accurately computing the financial ratios crucial to our analysis.
+
+The section of the project where we faced the most challenges was during the data merging process. Since the data had been extracted from three different data sources, the tables pulled did not contain the same column names, the companies were referred to differently, and there were no common identifiers to match the rows within each other. This situation led to multiple errors, data mismatches, and the appearance of missing values.
+
+The first merging step was to combine the Markit data with the CRSP data. This merging was facilitated by aligning the dates and the CUSIP 8-digit identifier, a common field in both datasets. This merging process was not overly complicated since there existed an ID column useful for matching both DataFrames. However, the problem arose when we attempted to merge the RepRisk dataset.
+
+The RepRisk dataset, which contained a lot of missing information, significantly complicated the merging process. Similar to the CRSP and Markit data, RepRisk had financial identifiers like CUSIP or ISIN but lacked the direct financial market data linkage, making it challenging to align with the other datasets on a company-by-company basis.
+
+Despite these challenges in data merging, the section of the project where we succeeded was in extracting meaningful results for each of the key ratios from the complex and diverse datasets we managed to compile. By painstakingly cleaning, aligning, and merging the data, we were able to conduct a comprehensive analysis that illuminated the relationship between ESG events and securities lending activities.
+
+
+
+\newpage
 \section{Analysis}
 
 The following analysis aims to empirically examine whether there is a quantifiable relationship between ESG events and changes in securities lending activity, such as variations in short interest ratios, loan supply ratios, and loan fees. By analyzing data on ESG incidents and securities lending metrics, the study seeks to determine if and how short sellers incorporate ESG considerations into their investment decisions, potentially using ESG events as indicators to guide their short-selling strategies.  In the realm of securities lending, several key metrics are pivotal for assessing market dynamics and investor sentiment. Below, we delve into the critical ratios and explore additional variables of interest within the Markit dataset.
