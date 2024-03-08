@@ -150,6 +150,16 @@ Each table delineated below serves as a comprehensive summary of statistical ana
 \label{table:short_interest_ratio_severity.tex}
 \end{table}
 
+In this table we are looking at the summary statistics for the Short Interest Ratio while controlling for severity of the ESG risk incident for the entire universe of stocks. That is, a function of the consequences of the severity with respect to ESG issues, the extent of its impact, and its type.
+
+As we would expect, the lower the severity level, the higher the amount of observations for the Short Interest Ratio.
+
+However, when it comes to the mean of the ESG incidents, we re getting counter intuitive results. The results show that the higher the incident severity, the lower the mean Short Interest ratio. This is an interesting result that can have further investigations.
+
+A similar result is found for the standard deviation, the higher the severity, the lower the standard deviation. This is also an interesting result that can have further investigations.
+
+It is interesting to highlight that the highest Short Interest Ratio achieved by any company in the dataframe was achieved when a company had an incident of severity level 1 and it was of 46.57\%. That means, almost half of the available stocks were being borrowed for short selling in that moment.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loan Supply Ratio}
@@ -227,6 +237,16 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 \input{\PathToOutputTables/loan_utilisation_ratio_environment.tex}
 \label{table:loan_utilisation_ratio_environment.tex}
 \end{table}
+
+As described in the RepRisk data documentation, the core research scope of RepRisk comprises 28 ESG Issues, which are divided into environmental, social, governance, and cross- sectional issues. Specifically, the Environment data element reflects T if the risk incident is linked to an environmental issue, else F.
+
+Therefore, in this case we can appreciate how the maximum Loan Utilisation Ratio achieved by any company when an Enivornmental incident happened was 99.11\%, while when no incident happened, the maximum was 100\%.
+
+Moreover, we see an increas in the mean Loan Utilisation ratio when there occurs an environmental incident, which is a result that favors the thesis that there is an impact in lending metrics when an ESG incident happens.
+
+The meedian of the Loan Utilisation ratio gives us another argument in favor of the thesis explored in this project. We can see an increase from 0.97\% when there is No Environmental incident to 1.61\% when there is an Environmental incident.
+
+Therefore, these results provoke further investigation and analysis to understand the relationship between Environmental incidents and the Loan Utilisation Ratio.
 
 \begin{table}[H]
 \caption{Summary Stats for Loan Utilisation Ratio for Social Level}
