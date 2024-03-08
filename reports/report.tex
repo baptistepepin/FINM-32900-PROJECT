@@ -211,7 +211,7 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Loan Utilisation Ratio}
 
-According to the Markit Data Dictionary, this variable is computed as "the value of assets on loan from lenders divided by the total lendable value".
+According to the Markit Data Dictionary, this variable is computed as "the value of assets on loan from lenders divided by the total lendable value". Therefore, a value higher tha 1 tells us that more than the asset's total lendable value is lower than the value of assets on loan from lenders. That would mean that lenders are leveraging their positions to lend more than the total lendable value of the asset.
 
 
  \begin{equation}
@@ -269,6 +269,7 @@ By presenting these tables, we aim to shed light on the nuanced ways in which th
 \subsection{Loan Fee Ratio}
 
 The following sections are dedicated to analyzing the Loan Utilisation Ratio, a critical measure that assesses the balance between the supply and demand of loanable shares within the securities lending market. This ratio serves as an essential indicator of market sentiment, where a higher utilisation rate typically signals robust demand for borrowing shares, often a precursor to increased short selling activity.
+
  \begin{equation}
 	\text{Loan Fee} = \text{IndicativeFee}
 	\label{eq:Loan_Fee}
@@ -408,6 +409,14 @@ Let's break down the analysis of the previous plot into each subplot.
 \doublespacing
 \section{Conclusion}
 
+In conclusion, we have examined the intricate relationship between ESG incidents and the landscape of securities lending, focusing on specific lending metrics for the US Stock Market. The project harnessed a rich array of data, merging intricate datasets from the likes of WRDS — including RepRisk, IHS Markit, and CRSP — to construct a robust analytical framework. Despite the hurdles of data integration, the study provided compelling insights into the conduct of short sellers in the face of ESG events.
 
+The analysis yielded clear indications that ESG developments have a tangible impact on securities lending, evidenced by the variations in the Short Interest Ratio amidst ESG incidents. The data definitely gives some insights on the responsiveness of short sellers to ESG-related news, and opens some interesting fields for further study of these computed metrics and any other metric that would give more information on the behavior of short sellers in the US Stock Market.
+
+Contrasting behaviors emerged when examining the lending indicators of distinct companies like Apple Inc., GameStop Corp., and Altria Group Inc. This contrast is particularly illuminating, as it highlights how company-specific factors — such as industry segment, market size, and the nature of ESG controversies — are reflected in securities lending metrics.
+
+While the research has indeed cast light on the relationship between ESG events and market reactions, it is not without its limitations. The study's observational design and the vast spectrum of ESG incidents considered make it challenging to draw definitive conclusions about causation. Furthermore, the fast-paced evolution of both ESG reporting standards and market sentiment presents an ever-shifting landscape that this study could only snapshot.
+
+In summation, this research underscores the growing importance of ESG considerations in the financial domain, especially concerning the actions of short sellers in the securities lending market. It lays the groundwork for further academic inquiry and suggests a future direction where further studies and more sophisticated econometric techniques might unravel the complex web of causality that underpins the observed market behaviors.
 
 \end{document}
