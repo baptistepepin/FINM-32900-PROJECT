@@ -39,7 +39,6 @@ def task_create_dirs():
             f"mkdir -p {OUTPUT_DIR / 'stats'}",
             f"mkdir -p {OUTPUT_DIR / 'tables'}",
         ],
-        "uptodate": [run_once],
     }
 
 
@@ -132,7 +131,7 @@ def task_plot_lend_ind():
 lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
 esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
 
-output_files = [f"{j + '_' + i}.parquet" for i in esg for j in lending_indicators]
+output_files = [f"{j + '_' + i + k}.parquet" for i in esg for j in lending_indicators for k in ['', '_change_5', '_change_26']]
 
 def task_compute_desc_stats():
     '''
