@@ -40,7 +40,6 @@ def plot_lend_ind(df, cusip_list, name_list, output_dir=config.OUTPUT_DIR):
 
         ax[1, 1].plot(selected_stock['date'], selected_stock['loan fee'], linewidth=1)
         ax[1, 1].set_title('Loan Fee')
-        ax[1, 1].set_ylabel('%')
         ax[1, 1].tick_params(axis='x', rotation=45)
 
         plt.tight_layout()
