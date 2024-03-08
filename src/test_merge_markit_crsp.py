@@ -125,8 +125,8 @@ def test_merge_crsp_markit_validity():
     assert dict(df_sampled.isna().sum())==NaNs
 
     # Check that the mean of the shrout column is correct
-    means_dict = {'short interest ratio': 0.02661572013812431, 
-                  'loan supply ratio': 0.1941798994997372, 
+    means_dict = {'short interest ratio': 2.6615720138124326,
+                  'loan supply ratio': 19.417989949973727,
                   'loan utilisation ratio': 16.35466789109963, 
                   'loan fee': 0.11534523060568044
                   }
