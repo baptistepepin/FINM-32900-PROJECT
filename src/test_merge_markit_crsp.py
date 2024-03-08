@@ -1,3 +1,6 @@
+"""
+
+"""
 import pandas as pd
 import numpy as np
 
@@ -13,6 +16,9 @@ START_DATE = config.START_DATE
 END_DATE = config.END_DATE
 
 def test_merge_markit_crsp():
+    """
+
+    """
     df1 = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df2 = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 
@@ -55,6 +61,9 @@ def test_merge_markit_crsp():
     pass
 
 def test_merge_crsp_markit_validity():
+    """
+
+    """
     df1 = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df2 = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 

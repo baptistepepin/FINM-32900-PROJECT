@@ -39,7 +39,7 @@ def compute_desc_stats(df):
     for i in esg:
         for j in lending_indicators:
             file_path = Path(config.OUTPUT_DIR) / "stats" / f"{j + '_' + i}.parquet"
-            df.groupby(i)[j].describe(percentiles=[.1, .25, .5, .75, .9]).T.to_parquet(file_path)
+            df.groupby(i)[j].describe(percentiles=[.1, .25, .5, .75, .9]).to_parquet(file_path)
 
     return df
 
@@ -69,7 +69,7 @@ def compute_des_stats_change_days_ahead(df, days=7):
     for i in esg:
         for j in lending_indicators:
             file_path = Path(config.OUTPUT_DIR) / "stats" / f"{j + '_' + i + '_change_' + str(days)}.parquet"
-            df_change.groupby(i)[f'{j}_change'].describe(percentiles=[.1, .25, .5, .75, .9]).T.to_parquet(file_path)
+            df_change.groupby(i)[f'{j}_change'].describe(percentiles=[.1, .25, .5, .75, .9]).to_parquet(file_path)
 
     return df
 
