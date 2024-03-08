@@ -1,9 +1,8 @@
 """
 The module `test_merge.py` is designed to test the robustness and correctness of the data merging processes 
-used in a financial data analysis project. It specifically targets the integration of datasets 
-from CRSP (Center for Research in Security Prices), Markit, and RepRisk, ensuring the merged 
-dataset is properly structured and contains all expected information without significant data 
-loss or mismatch.
+used in a financial data analysis project. It specifically targets the integration of datasets from CRSP, Markit, 
+and RepRisk, ensuring the merged dataset is properly structured and contains all expected information without 
+significant data loss or mismatch.
 
 The mdule contains the following functions:
     * test_merge
@@ -103,12 +102,15 @@ def test_merge():
 
 def test_merge_crsp_markit_validity():
     """
-    Validates the data integrity and consistency of the merged dataset from CRSP, Markit, and RepRisk, focusing on date range, DataFrame shape, and NaN values.
+    Validates the data integrity and consistency of the merged dataset from CRSP, Markit, and RepRisk, focusing 
+    on date range, DataFrame shape, and NaN values.
     
     The function ensures:
-        * The date range of the data covers at least from the start of 2022 to the end of 2023, verifying that the dataset spans the intended analysis period.
-        * The shape of the DataFrame matches the expected dimensions post-merge, indicating that data from all sources has been successfully integrated.
-        * The presence of NaN values across different columns matches expected patterns, highlighting any potential issues with data completeness or integrity.
+        * The date range of the data is from the start of 2022 to the end of 2023, verifying the intended analysis period.
+        * The shape of the DataFrame matches the expected dimensions post-merge, indicating that data from all sources 
+           has been successfully integrated.
+        * The presence of NaN values across different columns matches expected patterns, highlighting any potential issues 
+           with data completeness or integrity.
         * The accuracy of mean values for specific financial ratios, confirming the numerical integrity of the merged dataset.
     """
     df1 = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
