@@ -1,3 +1,8 @@
+"""
+This module `test_load_reprisk.py` is structured to validate the functionality and integrity of the load_RepRisk function, 
+pivotal for fetching RepRisk ESG (Environmental, Social, Governance) data within a specified date range.
+"""
+
 import pandas as pd
 import numpy as np
 
@@ -10,14 +15,23 @@ DATA_DIR = config.DATA_DIR
 START_DATE = config.START_DATE
 END_DATE = config.END_DATE
 
-
 def test_load_reprisk():
+    """
+    Evaluates the `load_RepRisk` function to confirm it successfully retrieves a DataFrame with the correct structure, 
+    expected columns, and data types. 
+
+    The function performs the following checks:
+        * Verifies the returned object is a pandas DataFrame, ensuring the data structured. 
+        * Confirms the presence of expected columns in the DataFrame, including 'reprisk_id', 'date', 'company_name', 
+            and various ESG indicators, among others.
+        * Assesses whether the data types of the columns match expectations.
+    """
     df = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
-    # # Test if the function returns a pandas DataFrame
+    # Test if the function returns a pandas DataFrame
     assert isinstance(df, pd.DataFrame)
-    #
-    # # Test if the DataFrame has the expected columns
+    
+    # Test if the DataFrame has the expected columns
     expected_columns = ['reprisk_id', 'date', 'company_name', 'primary_isin', 'current_rri',
        'trend_rri', 'peak_rri', 'peak_rri_date', 'reprisk_rating',
        'country_sector_average', 'incident_date', 'story_id',
@@ -26,6 +40,7 @@ def test_load_reprisk():
        'cusip']
     assert all(col in df.columns for col in expected_columns)
     
+    # Test if the DataFrame has the expected data types
     expected_dtypes = {
     'reprisk_id': np.dtype('O'),
     'date': np.dtype('<M8[ns]'),
@@ -55,20 +70,29 @@ def test_load_reprisk():
     pass
 
 def test_load_reprisk_data_validity():
+    """
+    Validates the data quality and consistency fetched by the `load_RepRisk` function, focusing on the date range, presence of 
+    NaN values, and the expected shape of the DataFrame.
+
+    This function conducts several critical checks:
+        * Ensures the data covers at least the entirety of the year 2022.
+        * Verifies the DataFrame's shape to match the anticipated number of entries and columns. 
+        * Quantifies and compares NaN values across different columns against expected patterns of data availability and missingness.
+        * Compares the descriptions of categorical ESG-related columns against predefined descriptions, ensuring the data's integrity.
+    """
     df = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     
-    # # Check that we have the data atleast for the year 2022 ( Reprisk does not have the data beyond this year )
+    # Check that we have the data atleast for the year 2022 ( Reprisk does not have the data beyond this year )
     assert df['date'].min() <= pd.to_datetime('2022-01-01')
     assert df['date'].max() >= pd.to_datetime('2022-12-31')
-    #
-    #
-    # # Rest of the test will be from a sampled subset of the data in the range mentioned above
+
+    # Rest of the test will be from a sampled subset of the data in the range mentioned above
     df_sampled = df[df.date.dt.year>=2022]
 
-    # # Check the shape of the dataframe
+    # Check the shape of the dataframe
     assert df_sampled.shape == (8540060, 22)
 
-    # # Check the number of NaNs in the data fetched
+    # Check the number of NaNs in the data fetched
     NaNs = {
     'reprisk_id': 0,
     'date': 0,
@@ -95,7 +119,7 @@ def test_load_reprisk_data_validity():
     }
     assert dict(df_sampled.isna().sum())==NaNs
 
-    # # Check that the mean of the indicative fee, utilisation, short loan quantity, lendable quantity columns is correct
+    # Check that the mean of the indicative fee, utilisation, short loan quantity, lendable quantity columns is correct
     descriptions = """
        environment social governance
 count        32438  32438      32438
