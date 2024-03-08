@@ -1,5 +1,13 @@
 """
+The module `test_merge.py` is designed to test the robustness and correctness of the data merging processes 
+used in a financial data analysis project. It specifically targets the integration of datasets 
+from CRSP (Center for Research in Security Prices), Markit, and RepRisk, ensuring the merged 
+dataset is properly structured and contains all expected information without significant data 
+loss or mismatch.
 
+The mdule contains the following functions:
+    * test_merge
+    * test_merge_crsp_markit_validity
 """
 import pandas as pd
 import numpy as np
@@ -19,7 +27,12 @@ END_DATE = config.END_DATE
 
 def test_merge():
     """
-
+    Tests the merging process of datasets from CRSP, Markit, and RepRisk to ensure the final DataFrame is correctly structured.
+    
+    This function performs the following checks:
+        * Verifies that the merged DataFrame is indeed a pandas DataFrame, confirming the successful merge of datasets.
+        * Checks if the DataFrame contains all expected columns from the CRSP, Markit, and RepRisk datasets, ensuring comprehensive data integration.
+        * Asserts that the data types of the columns are as expected, which is crucial for subsequent data manipulation and analysis.
     """
     df1 = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df2 = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
@@ -27,10 +40,10 @@ def test_merge():
     df4 = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df = merge_data(df3, df4, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 
-    # # Test if the function returns a pandas DataFrame
+    # Test if the function returns a pandas DataFrame
     assert isinstance(df, pd.DataFrame)
-    #
-    # # Test if the DataFrame has the expected columns
+
+    # Test if the DataFrame has the expected columns
     expected_columns = ['date', 'cusip', 'isin', 'instrumentname', 'indicativefee',
        'utilisation', 'shortloanquantity', 'quantityonloan',
        'lendablequantity', 'lenderconcentration', 'borrowerconcentration',
@@ -90,7 +103,13 @@ def test_merge():
 
 def test_merge_crsp_markit_validity():
     """
-
+    Validates the data integrity and consistency of the merged dataset from CRSP, Markit, and RepRisk, focusing on date range, DataFrame shape, and NaN values.
+    
+    The function ensures:
+        * The date range of the data covers at least from the start of 2022 to the end of 2023, verifying that the dataset spans the intended analysis period.
+        * The shape of the DataFrame matches the expected dimensions post-merge, indicating that data from all sources has been successfully integrated.
+        * The presence of NaN values across different columns matches expected patterns, highlighting any potential issues with data completeness or integrity.
+        * The accuracy of mean values for specific financial ratios, confirming the numerical integrity of the merged dataset.
     """
     df1 = load_CRSP(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df2 = load_Markit(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
@@ -98,18 +117,17 @@ def test_merge_crsp_markit_validity():
     df4 = load_RepRisk(start_date=START_DATE, end_date=END_DATE, data_dir=DATA_DIR, from_cache=True, save_cache=True)
     df = merge_data(df3, df4, data_dir=DATA_DIR, from_cache=True, save_cache=True)
 
-    # # Check that we have the data atleast from the start of 2022 to the end of 2023
+    # Check that we have the data atleast from the start of 2022 to the end of 2023
     assert df['date'].min() <= pd.to_datetime('2022-01-03')
     assert df['date'].max() >= pd.to_datetime('2023-12-29')
-    #
-    #
-    # # Rest of the test will be from a sampled subset of the data in the range mentioned above
+
+    # Rest of the test will be from a sampled subset of the data in the range mentioned above
     df_sampled = df[(df.date.dt.year>=2022) & (df.date.dt.year<=2023)]
 
-    # # Check the shape of the dataframe
+    # Check the shape of the dataframe
     assert df_sampled.shape == (7206986, 39)
 
-    # # Check that there are no NaNs in the data fetched
+    # Check that there are no NaNs in the data fetched
     NaNs = {
     'date': 0,
     'cusip': 0,
@@ -153,8 +171,7 @@ def test_merge_crsp_markit_validity():
     }
     assert dict(df_sampled.isna().sum())==NaNs
 
-    
-    # # Check that the mean of the shrout column is correct
+    # Check that the mean of the shrout column is correct
     ratio_means = {'short interest ratio': 0.02660878599461014, 
                    'loan supply ratio': 0.19421440968469392, 
                    'loan utilisation ratio': 16.352578932434426, 
