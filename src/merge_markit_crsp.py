@@ -46,8 +46,8 @@ def merge_markit_crsp(markit_df, crsp_df,data_dir=DATA_DIR,save_cache=False,from
             right_on=["cusip8", "date"],
         ).drop(columns=["cusip9", "date"]).rename(columns={"datadate": "date"})
 
-    df['short interest ratio'] = df['quantityonloan']/df['shrout']
-    df['loan supply ratio'] = df['lendablequantity']/df['shrout']
+    df['short interest ratio'] = df['quantityonloan']/df['shrout'] * 100
+    df['loan supply ratio'] = df['lendablequantity']/df['shrout'] * 100
     df['loan utilisation ratio'] = df['utilisation']
     df['loan fee'] = df['indicativefee']
 
