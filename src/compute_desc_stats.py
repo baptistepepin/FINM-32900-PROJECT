@@ -45,7 +45,11 @@ def compute_desc_stats(df):
 
 def compute_des_stats_change_days_ahead(df, days=7):
     """
+    Computes descriptive statistics for the change in specified lending indicators across different ESG (Environmental, Social,
+    and Governance) score categories and saves the results to .parquet files in the output directory. The change is calculated on a specified number of days ahead.
 
+    This function specifically calculates the descriptive statistics, including percentiles, for combinations
+    of change in lending indicators and ESG scores, facilitating the analysis of their relationships.
     """
     lending_indicators = ['short interest ratio', 'loan supply ratio', 'loan utilisation ratio', 'loan fee']
     esg = ['severity', 'novelty', 'reach', 'environment', 'social', 'governance']
@@ -76,5 +80,5 @@ if __name__ == '__main__':
 
     # Compute the descriptive statistics and store them in the data directory as .csv files
     _ = compute_desc_stats(df)
-    _ = compute_des_stats_change_days_ahead(df, 5)
-    _ = compute_des_stats_change_days_ahead(df, 26)
+    _ = compute_des_stats_change_days_ahead(df, 5)  # 1 week ahead change
+    _ = compute_des_stats_change_days_ahead(df, 26)  # 1 month ahead change
