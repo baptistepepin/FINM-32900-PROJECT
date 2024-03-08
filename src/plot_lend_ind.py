@@ -14,7 +14,7 @@ mpl.rcParams['font.family'] = 'Times New Roman'
 
 def plot_lend_ind(df, cusip_list, name_list, output_dir=config.OUTPUT_DIR):
     '''
-    This function plots apple's lending indicators and stores the plot as a .png file in the output directory
+    This function plots lending indicators for previously selected Stocks and stores the plot as a .png file in the output directory
     '''
     
     for cusip, name in zip(cusip_list, name_list):
