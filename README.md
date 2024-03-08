@@ -11,6 +11,7 @@ Baptiste:
 - [x] Look into a better merging on names (when all the rest will be working) -- THIS HAS NOT BEEN MERGED
 - [x] Create file `pandas_to_latex_tables.py` to convert pandas dataframes to LaTeX tables
 - [x] Update the `requirements.txt` file that lists all the dependencies for the project and the yml file
+- [x] Create file to calculate the difference in ratios
 
 Adriana:
 - [x] Complete the notebook `Project_Notebook.ipynb`, to explain the process of our project
@@ -30,7 +31,6 @@ Pranav:
 Diego:
 - [x] Look at CUSIP and the mapping of it in the different data sources for merging
 - [x] Create file `calculate_ratios.py` to calculate the ratios from the merged data
-- [ ] Create file to calculate the difference in ratios
 - [x] Update the `dodo.py` file to include all the tasks
 - [x] Complete report and create graphs
 
